@@ -1,0 +1,1 @@
+SELECT * FROM mydb.elementos_has_clase;
