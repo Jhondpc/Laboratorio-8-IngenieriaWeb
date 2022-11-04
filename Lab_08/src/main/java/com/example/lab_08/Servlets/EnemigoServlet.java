@@ -43,13 +43,15 @@ public class EnemigoServlet extends HttpServlet {
                 } else {
                     //id no encontrado
                     response.sendRedirect(request.getContextPath() + "/HeroeServlet");
-
                 }
                 break;
 
             case "crear":
-
-                view = request.getRequestDispatcher("/Heroe/agregar_heroe.jsp");
+                view = request.getRequestDispatcher("agregar_heroe.jsp");
+                view.forward(request,response);
+                break;
+            case "clase":
+                view = request.getRequestDispatcher("clase_enemigos.jsp");
                 view.forward(request,response);
                 break;
 

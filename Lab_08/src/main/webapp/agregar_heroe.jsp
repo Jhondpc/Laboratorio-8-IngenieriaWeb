@@ -50,7 +50,7 @@
                                 <div class="full">
                                     <div class="center-desk">
                                         <div class="logo">
-                                            <a href="index.html"><img style ="width: 80px"; src="images/icono.png" alt="#" /></a>
+                                            <a href="index.html"><img style ="width: 80px" ; src="images/icono.png" alt="#" /></a>
                                         </div>
                                     </div>
                                 </div>
@@ -60,11 +60,11 @@
                                     <div class="limit-box">
                                         <nav class="main-menu">
                                             <ul class="menu-area-main">
-                                                <li class="active"> <a href="menu_principal.html">Menú Principal</a> </li>
-                                                <li> <a href="heroes.html">Héroes</a> </li>
-                                                <li> <a href="enemigo.html">Enemigos</a> </li>
-                                                <li> <a href="hechizos.html">Hechizos</a> </li>
-                                                <li> <a href="catalogo.html">Catálogo de Obejtos</a> </li>
+                                                <li class="active"> <a href="<%=request.getContextPath()%>/index">Menú Principal</a> </li>
+                                                <li> <a href="<%=request.getContextPath()%>/index?action=heroes">Héroes</a> </li>
+                                                <li> <a href="<%=request.getContextPath()%>/index?action=enemigos">Enemigos</a> </li>
+                                                <li> <a href="<%=request.getContextPath()%>/index?action=hechizos">Hechizos</a> </li>
+                                                <li> <a href="<%=request.getContextPath()%>/index?action=catalogo">Catálogo de Obejtos</a> </li>
 
                                             </ul>
                                         </nav>
@@ -122,7 +122,7 @@
                                                     <input type="text" class="form-control rounded" id="maxSalary" placeholder="Pts de Experiencia" name="PtsdeExperiencia">
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Guardar</button>
-                                                <a  class="btn btn-danger">Regresar</a>
+                                                <a class="btn btn-danger" href="<%=request.getContextPath()%>/HeroeServlet">Regresar</a>
                                             </form>
                                         </div>
                                     </div>

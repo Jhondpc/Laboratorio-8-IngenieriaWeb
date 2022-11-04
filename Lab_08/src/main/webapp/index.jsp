@@ -60,11 +60,11 @@
                                     <div class="limit-box">
                                         <nav class="main-menu">
                                             <ul class="menu-area-main">
-                                                <li class="active"> <a href="menu_principal.html">Menú Principal</a> </li>
-                                                <li> <a href="heroes.html">Héroes</a> </li>
-                                                <li> <a href="enemigo.html">Enemigos</a> </li>
-                                                <li> <a href="hechizos.html">Hechizos</a> </li>
-                                                <li> <a href="catalogo.html">Catálogo de Obejtos</a> </li>
+                                                <li class="active"> <a href="<%=request.getContextPath()%>/index">Menú Principal</a> </li>
+                                                <li> <a href="<%=request.getContextPath()%>/index?action=heroes">Héroes</a> </li>
+                                                <li> <a href="<%=request.getContextPath()%>/index?action=enemigos">Enemigos</a> </li>
+                                                <li> <a href="<%=request.getContextPath()%>/index?action=hechizos">Hechizos</a> </li>
+                                                <li> <a href="<%=request.getContextPath()%>/index?action=catalogo">Catálogo de Obejtos</a> </li>
 
                                             </ul>
                                         </nav>

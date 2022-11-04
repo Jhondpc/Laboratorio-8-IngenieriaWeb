@@ -50,7 +50,7 @@
                                 <div class="full">
                                     <div class="center-desk">
                                         <div class="logo">
-                                            <a href="index.html"><img style ="width: 80px"; src="images/icono.png" alt="#" /></a>
+                                            <a href="index.html"><img style ="width: 80px" ; src="images/icono.png" alt="#" /></a>
                                         </div>
                                     </div>
                                 </div>
@@ -60,11 +60,11 @@
                                     <div class="limit-box">
                                         <nav class="main-menu">
                                             <ul class="menu-area-main">
-                                                <li class="active"> <a href="menu_principal.html">Menú Principal</a> </li>
-                                                <li> <a href="heroes.html">Héroes</a> </li>
-                                                <li> <a href="enemigo.html">Enemigos</a> </li>
-                                                <li> <a href="hechizos.html">Hechizos</a> </li>
-                                                <li> <a href="catalogo.html">Catálogo de Obejtos</a> </li>
+                                                <li class="active"> <a href="<%=request.getContextPath()%>/index">Menú Principal</a> </li>
+                                                <li> <a href="<%=request.getContextPath()%>/index?action=heroes">Héroes</a> </li>
+                                                <li> <a href="<%=request.getContextPath()%>/index?action=enemigos">Enemigos</a> </li>
+                                                <li> <a href="<%=request.getContextPath()%>/index?action=hechizos">Hechizos</a> </li>
+                                                <li> <a href="<%=request.getContextPath()%>/index?action=catalogo">Catálogo de Obejtos</a> </li>
 
                                             </ul>
                                         </nav>
@@ -92,13 +92,13 @@
                                                 <div class="row" "container" >
                                                 <div class="col-4">
 
-                                                    <a class="btn btn-danger" href="agregar_enemigo.html"
+                                                    <a class="btn btn-danger" href="<%=request.getContextPath()%>/EnemigoServlet?accion=crear"
                                                        role="button">Añadir nuevo Enemigo</a>
 
                                                 </div>
                                                 <div class="col-2">
 
-                                                    <a class="btn btn-danger" href="clase_enemigos.html"
+                                                    <a class="btn btn-danger" href="<%=request.getContextPath()%>/EnemigoServlet?accion=clase"
                                                        role="button">Ver Clases de Enemigos</a>
 
                                                 </div>
@@ -133,47 +133,7 @@
                                                 </thead>
                                                 <!--
 												<tbody>
-													<%
-														int i = 1;
-														for (Usuarios usuarios : listaUsuarios) {
-													%>
-													<tr>
-														<td scope="row"><%=i%>
-														</td>
-														<td><%=usuarios.getCodigoPucp()%>
-														</td>
-														<td><%=usuarios.getNombres()%>
-														</td>
-														<td><%=usuarios.getApellidos()%>
-														</td>
-														<td><%=usuarios.getCorreoPucp()%>
-														</td>
-														<td><%=usuarios.getDni()%>
-														</td>
-														<td><%=usuarios.getRol()%>
-														</td>
-														<td>
 
-															<a type="button" class="btn btn-primary"
-															   href="<%=request.getContextPath()%>/AdminServlet?action=editar&id=<%=usuarios.getIdUsuarios()%>">
-																<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-																	 class="bi bi-pencil" viewBox="0 0 16 16">
-																	<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
-																</svg>
-															</a>
-														</td>
-														<td>
-															<a type="button" class="btn btn-danger"
-															   onclick="return confirm('¿Estas seguro(a) que deseas borrar?')"
-															   href="<%=request.getContextPath()%>/AdminServlet?action=borrar&id=<%=usuarios.getIdUsuarios()%>">
-																<i class="bi bi-trash"></i></a>
-
-														</td>
-													</tr>
-													<%
-															i++;
-														}
-													%>
 
 												</tbody>-->
                                             </table>

@@ -27,10 +27,14 @@ public class HeroeServlet extends HttpServlet {
         int idHeroe;
         switch (accion){
 
+            case "inicio":
+                view = request.getRequestDispatcher("heroes.jsp");
+                view.forward(request,response);
+                break;
             case "listar":
 
                 request.setAttribute("listaHeroes", hDao.listarHeroes());
-                view = request.getRequestDispatcher("/Heroe/heroes.jsp");
+                view = request.getRequestDispatcher("heroes.jsp");
                 view.forward(request,response);
                 break;
 
@@ -40,7 +44,7 @@ public class HeroeServlet extends HttpServlet {
 
                 if (heroe != null){
                     request.setAttribute("heroe", heroe);
-                    view = request.getRequestDispatcher("/Heroe/editarHeroe.jsp");
+                    view = request.getRequestDispatcher("editarHeroe.jsp");
                     view.forward(request,response);
                 } else {
                     //id no encontrado
@@ -50,8 +54,7 @@ public class HeroeServlet extends HttpServlet {
                 break;
 
             case "crear":
-
-                view = request.getRequestDispatcher("/Heroe/agregar_heroe.jsp");
+                view = request.getRequestDispatcher("agregar_heroe.jsp");
                 view.forward(request,response);
                 break;
 
