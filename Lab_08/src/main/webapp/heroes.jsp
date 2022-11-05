@@ -1,4 +1,9 @@
+<%@ page import="com.example.lab_08.model.Beans.Heroes" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.ArrayList" %>
+<jsp:useBean id="listaHeroes" scope="request" type="ArrayList<Heroes>"/>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -127,11 +132,38 @@
 
                                                         </tr>
                                                     </thead>
-                                                    <!--
-												<tbody>
+
+                                                    <tbody>
+                                                    <%
+                                                        for (Heroes heroes : listaHeroes) { %>
+                                                    <tr>
+
+                                                        <td><%=heroes.getIdHeroes()%>
+                                                        </td>
+                                                        <td><%=heroes.getNombre()%>
+                                                        </td>
+                                                        <td><%=heroes.getEdad()%>
+                                                        </td>
+                                                        <td><%=heroes.getGenero()%>
+                                                        </td>
+                                                        <td><%=heroes.getClase()%>
+                                                        </td>
+                                                        <td><%=heroes.getNivelInicial()%>
+                                                        </td>
+                                                        <td><%=heroes.getAtaque()%>
+                                                        </td>
+                                                        <td><%=heroes.getClase()%>
+                                                        </td>
+                                                        <td><%=heroes.getPtosExperiencia()%>
+                                                        </td>
+                                                    </tr>
+                                                    <%
+                                                    }
+
+                                                    %>
+                                                    </tbody>
 
 
-												</tbody>-->
                                                 </table>
                                             </div>
                                         </div>

@@ -19,7 +19,7 @@ public class HechizoServlet extends HttpServlet {
         String accion = request.getParameter("accion")==null?"inicio":request.getParameter("accion");
         RequestDispatcher view;
         HechizoDao hDao = new HechizoDao();
-        int idEnemigo;
+        int idHechizo;
 
         switch (accion){
 
@@ -27,14 +27,14 @@ public class HechizoServlet extends HttpServlet {
                 view = request.getRequestDispatcher("agregar_hechizo.jsp");
                 view.forward(request,response);
                 break;
-
+            /*
             case "borrar":  // JobServlet?action=borrar&id=50
                 idHechizo = Integer.parseInt(request.getParameter("id_enemigo"));
                 hDao.borrarhechizo(idHechizo);
 
                 response.sendRedirect(request.getContextPath() + "/EnemigoServlet");
                 break;
-
+                */
             case "listar":
 
                 request.setAttribute("listaEnemigos", hDao.listarHechizos());
