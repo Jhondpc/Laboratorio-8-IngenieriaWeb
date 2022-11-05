@@ -1,7 +1,9 @@
 package com.example.lab_08.Servlets;
 
 import com.example.lab_08.model.Daos.EnemigoDao;
+import com.example.lab_08.model.Daos.HechizoDao;
 import com.example.lab_08.model.Daos.HeroeDao;
+import com.example.lab_08.model.Daos.ObjetoDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -18,7 +20,8 @@ public class ServletInicio extends HttpServlet {
         RequestDispatcher requestDispatcher;
         HeroeDao hDao = new HeroeDao();
         EnemigoDao eDao = new EnemigoDao();
-
+        HechizoDao hechizoDao = new HechizoDao();
+        ObjetoDao oDao = new ObjetoDao();
 
         switch (action) {
             case "inicio":
@@ -33,15 +36,17 @@ public class ServletInicio extends HttpServlet {
                 break;
             case "enemigos":
 
-                request.setAttribute("listaHeroes", eDao.listarEnemigos());
+                request.setAttribute("listaEnemigos", eDao.listarEnemigos());
                 requestDispatcher = request.getRequestDispatcher("enemigo.jsp");
                 requestDispatcher.forward(request, response);
                 break;
             case "hechizos":
+                request.setAttribute("listaHechizos", hechizoDao.listarHechizos());
                 requestDispatcher = request.getRequestDispatcher("hechizos.jsp");
                 requestDispatcher.forward(request, response);
                 break;
             case "catalogo":
+                request.setAttribute("listaObjetos", oDao.listarObjetos());
                 requestDispatcher = request.getRequestDispatcher("catalogo.jsp");
                 requestDispatcher.forward(request, response);
                 break;

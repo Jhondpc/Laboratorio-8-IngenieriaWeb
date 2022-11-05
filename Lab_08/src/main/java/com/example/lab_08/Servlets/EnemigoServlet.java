@@ -41,15 +41,15 @@ public class EnemigoServlet extends HttpServlet {
 
             case "editar":
                 idEnemigo = Integer.parseInt(request.getParameter("id_heroe"));
-                enemigo = eDao.buscarporIdHeroe(idEnemigo);
+                enemigo = eDao.buscarporIdEnemigo(idEnemigo);
 
-                if (heroe != null){
-                    request.setAttribute("heroe", heroe);
-                    view = request.getRequestDispatcher("/Heroe/editarHeroe.jsp");
+                if (enemigo != null){
+                    request.setAttribute("enemigo", enemigo);
+                    view = request.getRequestDispatcher("editarEnemigo.jsp");
                     view.forward(request,response);
                 } else {
                     //id no encontrado
-                    response.sendRedirect(request.getContextPath() + "/HeroeServlet");
+                    response.sendRedirect(request.getContextPath() + "/EnemigoServlet");
                 }
                 break;
 
@@ -63,8 +63,8 @@ public class EnemigoServlet extends HttpServlet {
                 break;
 
             case "borrar":  // JobServlet?action=borrar&id=50
-                idHeroe = Integer.parseInt(request.getParameter("id_heroe"));
-                hDao.borrarheroe(idHeroe);
+                idEnemigo = Integer.parseInt(request.getParameter("id_heroe"));
+                eDao.borrarEnemigo(idEnemigo);
 
                 response.sendRedirect(request.getContextPath() + "/HeroeServlet");
                 break;

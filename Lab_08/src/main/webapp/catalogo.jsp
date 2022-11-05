@@ -1,4 +1,11 @@
+<%@ page import="com.example.lab_08.model.Beans.InventarioObjetos" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
+<%
+    ArrayList<InventarioObjetos> listaObjetos = (ArrayList<InventarioObjetos>) request.getAttribute("listaObjetos");
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -124,11 +131,30 @@
 
                                                         </tr>
                                                     </thead>
-                                                    <!--
-												<tbody>
+
+                                                    <tbody>
+                                                    <%
+                                                        for (InventarioObjetos objetos : listaObjetos) { %>
+                                                    <tr>
+                                                        <td><%=objetos.getIdInventarioObjetos()%>
+                                                        </td>
+                                                        <td><%=objetos.getNombre()%>
+                                                        </td>
+                                                        <td><%=objetos.getUso()%>
+                                                        </td>
+                                                        <td><%=objetos.getPeso()%>
+                                                        </td>
+                                                        <td><%=""%>
+                                                        </td>
 
 
-												</tbody>-->
+                                                    </tr>
+                                                    <%
+                                                        }
+
+                                                    %>
+                                                    </tbody>
+
                                                 </table>
                                             </div>
                                         </div>

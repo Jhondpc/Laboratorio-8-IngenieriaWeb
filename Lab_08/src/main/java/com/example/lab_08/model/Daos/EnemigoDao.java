@@ -14,10 +14,11 @@ public class EnemigoDao extends DaoBase{
 
         try (Connection connection = this.getConnection();
              Statement stm = connection.createStatement();
-             ResultSet rs = stm.executeQuery("select * from enemigos")) {
+             ResultSet rs = stm.executeQuery("SELECT * FROM enemigos")) {
 
-            Enemigos enemigo = new Enemigos();
+
             while(rs.next()){
+                Enemigos enemigo = new Enemigos();
                 enemigo.setIdEnemigos(rs.getInt(1));
                 enemigo.setNombre(rs.getString(2));
                 enemigo.setGenero(rs.getString(3));
@@ -62,18 +63,18 @@ public class EnemigoDao extends DaoBase{
     }
 
 
-    public void editarEnemigo(String nombreUpdate, int edadUpdate, String generoUpdate, int nivelUpdate, int id_parejaUpdate, int ataqueUpdate){
+    public void editarEnemigo(String nombreUpdate, String generoUpdate, int nivelUpdate, int ataqueUpdate){
 
-        String sql = "update enemigos set nombre=?,edad=?,genero=?,nivel_inicial=?,ataque=?,id_pareja=? where id_heroe=?";
+        String sql = "update enemigos set nombre=?,genero=?,nivel_inicial=?,ataque=?,id_pareja=? where id_heroe=?";
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
             //pstmt.setInt(1,heroe.getIdHeroes());
             pstmt.setString(1,nombreUpdate);
-            pstmt.setInt(2,edadUpdate);
-            pstmt.setString(3,generoUpdate);
-            pstmt.setInt(4,nivelUpdate);
-            pstmt.setInt(5,id_parejaUpdate);
+            //pstmt.setInt(2,edadUpdate);
+            pstmt.setString(2,generoUpdate);
+            pstmt.setInt(3,nivelUpdate);
+            pstmt.setInt(4,ataqueUpdate);
             //pstmt.setInt(7,heroe.getIdPareja());
 
 
@@ -87,13 +88,13 @@ public class EnemigoDao extends DaoBase{
 
     }
 
-    public void borrarEnemigo(int idHeroe){
-        String sql = "DELETE FROM heroes WHERE idHeroe = ?"; //sentencia de sql para eliminar un registro a partir del id que ingresa el usuario
+    public void borrarEnemigo(int idEnemigo){
+        String sql = "DELETE FROM enemigos WHERE idEnemigo = ?"; //sentencia de sql para eliminar un registro a partir del id que ingresa el usuario
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setInt(1, idHeroe);
+            pstmt.setInt(1, idEnemigo);
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -103,25 +104,25 @@ public class EnemigoDao extends DaoBase{
     }
 
 
-    public Heroes buscarporIdHeroe(int idHeroe){
+    public Enemigos buscarporIdEnemigo(int idEnemigo){
 
-        Heroes heroe = null;
+        Enemigos enemigo = null;
 
-        String sql = "select * from heroes where idHeroe=?";
+        String sql = "select * from enemigos where idEnemigos=?";
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setInt(1, idHeroe);
+            pstmt.setInt(1, idEnemigo);
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    heroe = new Heroes(); //instanciando al heroe
-                    heroe.setIdHeroes(rs.getInt(1));
-                    heroe.setEdad(rs.getInt(2));
-                    heroe.setGenero(rs.getString(3));
-                    heroe.setNivelInicial(rs.getInt(4));
-                    heroe.setAtaque(rs.getInt(5));
+                    enemigo = new Enemigos(); //instanciando al heroe
+                    enemigo.setIdEnemigos(rs.getInt(1));
+                    enemigo.setNombre(rs.getString(2));
+                    enemigo.setGenero(rs.getString(3));
+                    enemigo.setExperienciaPorDerrota(rs.getInt(4));
+                    enemigo.setAtaque(rs.getInt(5));
 
                 }
             }
@@ -130,33 +131,32 @@ public class EnemigoDao extends DaoBase{
         }
 
 
-        return heroe;
+        return enemigo;
 
     }
 
 
-    public ArrayList<Heroes> buscarporNombreHeroe(String nombreHeroe){
+    public ArrayList<Enemigos> buscarporNombreEnemigo(String nombreEnemigo){
 
-        ArrayList<Heroes> listaHeroes = null;
+        ArrayList<Enemigos> listaEnemigos = null;
 
-        String sql = "select * from heroes where nombre=?";
+        String sql = "select * from enemigos where nombre=?";
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setString(1, nombreHeroe);
+            pstmt.setString(1, nombreEnemigo);
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
 
-                    Heroes heroe = new Heroes();
-                    heroe.setIdHeroes(rs.getInt(1));
-                    heroe.setEdad(rs.getInt(2));
-                    heroe.setGenero(rs.getString(3));
-                    heroe.setNivelInicial(rs.getInt(4));
-                    heroe.setAtaque(rs.getInt(5));
-
-                    listaHeroes.add(heroe);
+                    Enemigos enemigo = new Enemigos(); //instanciando al enemigo
+                    enemigo.setIdEnemigos(rs.getInt(1));
+                    enemigo.setNombre(rs.getString(2));
+                    enemigo.setGenero(rs.getString(3));
+                    enemigo.setExperienciaPorDerrota(rs.getInt(4));
+                    enemigo.setAtaque(rs.getInt(5));
+                    listaEnemigos.add(enemigo);
 
                 }
             }
@@ -165,7 +165,7 @@ public class EnemigoDao extends DaoBase{
         }
 
 
-        return listaHeroes;
+        return listaEnemigos;
 
     }
 }

@@ -14,8 +14,9 @@ public class HechizoDao extends DaoBase {
 
         try (Connection connection = this.getConnection();
              Statement stm = connection.createStatement();
+             ResultSet rs = stm.executeQuery("select * from hechizo_magicos")) {
 
-             ResultSet rs = stm.executeQuery("select * from hechizos_magicos")) {
+
             while(rs.next()){
                 Hechizos hechizo = new Hechizos();
                 hechizo.setIdHechizos(rs.getInt(1));
