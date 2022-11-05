@@ -85,7 +85,7 @@ public class HeroeServlet extends HttpServlet {
                 String nombre=request.getParameter("Nombre");
                 int edad= Integer.parseInt(request.getParameter("Edad"));
                 String genero=request.getParameter("Genero");
-                int clase = Integer.parseInt(request.getParameter("Clase"));
+                String clase = request.getParameter("Clase");
                 int nivelInicial= Integer.parseInt(request.getParameter("Nivel_Inicia"));
                 int ataque = Integer.parseInt(request.getParameter("Ataque"));
                 //int idPareja= Integer.parseInt(request.getParameter("IDPareja"));

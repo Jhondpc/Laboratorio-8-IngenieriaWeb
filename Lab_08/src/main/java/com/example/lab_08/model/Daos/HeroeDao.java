@@ -25,10 +25,10 @@ public class HeroeDao extends DaoBase{
                 heroe.setNombre(rs.getString(2));
                 heroe.setEdad(rs.getInt(3));
                 heroe.setGenero(rs.getString(4));
-                heroe.setClase(rs.getInt(5));
+                heroe.setClase(rs.getString(5));
                 heroe.setNivelInicial(rs.getInt(6));
                 heroe.setAtaque(rs.getInt(7));
-                heroe.setIdPareja(rs.getString(8));
+                heroe.setPareja(rs.getString(8));
                 heroe.setPtosExperiencia(rs.getInt(9));
                 listaHeroes.add(heroe);
             }
@@ -50,7 +50,7 @@ public class HeroeDao extends DaoBase{
             pstmt.setString(1,heroe.getNombre());
             pstmt.setInt(2,heroe.getEdad());
             pstmt.setString(3,heroe.getGenero());
-            pstmt.setInt(4, heroe.getClase());
+            pstmt.setString(4, heroe.getClase());
             pstmt.setInt(5,heroe.getNivelInicial());
             pstmt.setInt(6,heroe.getAtaque());
             //pstmt.setInt(7,heroe.getIdPareja());

@@ -27,7 +27,7 @@ public class HechizoDao extends DaoBase {
                 hechizo.setElemento(rs.getString(3));
                 hechizo.setPotencia(rs.getInt(4));
                 hechizo.setPrecision(rs.getInt(5));
-                hechizo.setHechizoBase(rs.getInt(6));
+                hechizo.setHechizoBase(rs.getString(6));
                 hechizo.setNivelAprendizaje(rs.getInt(7));
                 listaHechizos.add(hechizo);
             }
@@ -104,7 +104,7 @@ public class HechizoDao extends DaoBase {
                     hechizo.setPotencia(rs.getInt(3));
                     hechizo.setPrecision(rs.getInt(4));
                     hechizo.setNivelAprendizaje(rs.getInt(5));
-                    hechizo.setHechizoBase(rs.getInt(6));
+                    hechizo.setHechizoBase(rs.getString(6));
 
                     listaHechizos.add(hechizo);
 

@@ -2,12 +2,12 @@ package com.example.lab_08.model.Beans;
 
 public class Hechizos {
 
-    private Integer idHechizos;
+    private int idHechizos;
     private String nombre;
     private int potencia;
     private int precision;
-    private Integer nivelAprendizaje;
-    private Integer hechizoBase;
+    private int nivelAprendizaje;
+    private String hechizoBase;
     private String elemento;
 
 
@@ -44,7 +44,7 @@ public class Hechizos {
         this.precision = precision;
     }
 
-    public Integer getNivelAprendizaje() {
+    public int getNivelAprendizaje() {
         return nivelAprendizaje;
     }
 
@@ -52,11 +52,11 @@ public class Hechizos {
         this.nivelAprendizaje = nivelAprendizaje;
     }
 
-    public Integer getHechizoBase() {
+    public String getHechizoBase() {
         return hechizoBase;
     }
 
-    public void setHechizoBase(Integer hechizoBase) {
+    public void setHechizoBase(String hechizoBase) {
         this.hechizoBase = hechizoBase;
     }
 

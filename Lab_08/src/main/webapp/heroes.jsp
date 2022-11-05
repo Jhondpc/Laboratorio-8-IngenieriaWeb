@@ -154,7 +154,7 @@
                                                             </td>
                                                             <td><%=heroes.getAtaque()%>
                                                             </td>
-                                                            <td><%=heroes.getIdPareja()%>
+                                                            <td><%=heroes.getPareja()%>
                                                             </td>
                                                             <td><%=heroes.getPtosExperiencia()%>
                                                             </td>
