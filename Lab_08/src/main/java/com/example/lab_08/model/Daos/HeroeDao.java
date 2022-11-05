@@ -42,14 +42,15 @@ public class HeroeDao extends DaoBase{
     public void crearHeroe(Heroes heroe){
 
 
-        String sql = "insert into heroes (nombre,edad,genero,nivel_inicial,ataque,id_pareja) values (?,?,?,?,?,?,?)";
+        String sql = "insert into heroes (nombre,edad,genero,clase,nivel_inicial,ataque) values (?,?,?,?,?,?)";
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setInt(1,heroe.getIdHeroes());
-            pstmt.setString(2,heroe.getNombre());
-            pstmt.setInt(3,heroe.getEdad());
-            pstmt.setString(4,heroe.getGenero());
+            //pstmt.setInt(1,heroe.getIdHeroes());
+            pstmt.setString(1,heroe.getNombre());
+            pstmt.setInt(2,heroe.getEdad());
+            pstmt.setString(3,heroe.getGenero());
+            pstmt.setString(4, heroe.getClase());
             pstmt.setInt(5,heroe.getNivelInicial());
             pstmt.setInt(6,heroe.getAtaque());
             //pstmt.setInt(7,heroe.getIdPareja());

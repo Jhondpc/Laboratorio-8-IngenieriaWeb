@@ -41,7 +41,7 @@ public class EnemigoDao extends DaoBase{
     public void crearEnemigo(Enemigos enemigo){
 
 
-        String sql = "insert into enemigos (nombre,genero,experiencia_x_derrota,ataque) values (?,?,?,?,?)";
+        String sql = "insert into enemigos (nombre,clase,experiencia_x_derrota,ataque) values (?,?,?,?,?)";
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
@@ -52,6 +52,8 @@ public class EnemigoDao extends DaoBase{
             pstmt.setInt(6,enemigo.getAtaque());
             //pstmt.setInt(7,heroe.getIdPareja());
             //pstmt.setInt(8,heroe.getPtosExperiencia());
+
+
 
             pstmt.executeUpdate();
 
@@ -104,68 +106,51 @@ public class EnemigoDao extends DaoBase{
     }
 
 
-    public Enemigos buscarporIdEnemigo(int idEnemigo){
+    public ArrayList<Enemigos> buscarEnemigos(String nombreEnemigo){
 
-        Enemigos enemigo = null;
+        ArrayList<Enemigos> buscarEnemigos = new ArrayList<>();
 
-        String sql = "select * from enemigos where idEnemigos=?";
-
-        try (Connection connection = this.getConnection();
-             PreparedStatement pstmt = connection.prepareStatement(sql)) {
-
-            pstmt.setInt(1, idEnemigo);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    enemigo = new Enemigos(); //instanciando al heroe
-                    enemigo.setIdEnemigos(rs.getInt(1));
-                    enemigo.setNombre(rs.getString(2));
-                    enemigo.setGenero(rs.getString(3));
-                    enemigo.setExperienciaPorDerrota(rs.getInt(4));
-                    enemigo.setAtaque(rs.getInt(5));
-
-                }
-            }
-        } catch (SQLException e) {
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
+        String url = "jdbc:mysql://localhost:3306/mydb?serverTimezone=America/Lima";
+        String sql = "SELECT * FROM mydb.enemigos WHERE lower(nombre) like ?";
 
-        return enemigo;
+        try(Connection conn = DriverManager.getConnection(url, "root", "root");
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, "%"+nombreEnemigo+"%");
+
+
+
+            try (ResultSet rs = pstmt.executeQuery()){
+                while (rs.next()){
+                    Enemigos enemigo = new Enemigos();
+
+                    enemigo.setIdEnemigos(rs.getInt(1));
+                    enemigo.setNombre(rs.getString(2));
+                    enemigo.setClase(rs.getInt(3));
+                    enemigo.setAtaque(rs.getInt(4));
+                    enemigo.setExperienciaPorDerrota(rs.getInt(5));
+                    enemigo.setIdObjetoDejaDerrota(rs.getInt(6));
+
+
+                    listarEnemigos().add(enemigo);
+
+                }
+            }
+
+        }catch (SQLException e){
+            throw new RuntimeException();
+        }
+
+        return listarEnemigos();
 
     }
 
 
-    public ArrayList<Enemigos> buscarporNombreEnemigo(String nombreEnemigo){
 
-        ArrayList<Enemigos> listaEnemigos = null;
-
-        String sql = "select * from enemigos where nombre=?";
-
-        try (Connection connection = this.getConnection();
-             PreparedStatement pstmt = connection.prepareStatement(sql)) {
-
-            pstmt.setString(1, nombreEnemigo);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-
-                    Enemigos enemigo = new Enemigos(); //instanciando al enemigo
-                    enemigo.setIdEnemigos(rs.getInt(1));
-                    enemigo.setNombre(rs.getString(2));
-                    enemigo.setGenero(rs.getString(3));
-                    enemigo.setExperienciaPorDerrota(rs.getInt(4));
-                    enemigo.setAtaque(rs.getInt(5));
-                    listaEnemigos.add(enemigo);
-
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        return listaEnemigos;
-
-    }
 }

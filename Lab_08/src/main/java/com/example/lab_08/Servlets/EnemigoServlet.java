@@ -2,10 +2,7 @@ package com.example.lab_08.Servlets;
 
 import com.example.lab_08.model.Beans.Enemigos;
 import com.example.lab_08.model.Beans.Heroes;
-import com.example.lab_08.model.Daos.ClaseDao;
-import com.example.lab_08.model.Daos.ElementoDao;
-import com.example.lab_08.model.Daos.EnemigoDao;
-import com.example.lab_08.model.Daos.HeroeDao;
+import com.example.lab_08.model.Daos.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -43,7 +40,7 @@ public class EnemigoServlet extends HttpServlet {
                 view = request.getRequestDispatcher("debilidades_fortalezas.jsp");
                 view.forward(request,response);
                 break;
-
+            /*
             case "editar":
                 idEnemigo = Integer.parseInt(request.getParameter("id_heroe"));
                 enemigo = eDao.buscarporIdEnemigo(idEnemigo);
@@ -56,9 +53,10 @@ public class EnemigoServlet extends HttpServlet {
                     //id no encontrado
                     response.sendRedirect(request.getContextPath() + "/EnemigoServlet");
                 }
-                break;
+                break;*/
 
             case "crear":
+
                 view = request.getRequestDispatcher("agregar_enemigo.jsp");
                 view.forward(request,response);
                 break;
@@ -82,6 +80,54 @@ public class EnemigoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        EnemigoDao eDao = new EnemigoDao();
 
+        switch (action) {
+            case "guardar":
+
+                String NombreEne = request.getParameter("Nombre");
+                String Clasestr = request.getParameter("Clase");
+                int Clase = Integer.parseInt(Clasestr);
+                String Ataquestr = request.getParameter("Ataque");
+                int Ataque = Integer.parseInt(Ataquestr);
+                String expstr = request.getParameter("ExperienciaporDerrota");
+                int ExperienciaporDerrota = Integer.parseInt(expstr);
+                String objetoDejado = request.getParameter("Obejtodejado");
+                String probadejarobjetoStr = request.getParameter("ProbabildiaddedejarObjetos");
+                float probDejarObjeto = Float.parseFloat(probadejarobjetoStr);
+
+                Enemigos enemigo = new Enemigos();
+
+
+                enemigo.setNombre(NombreEne);
+                enemigo.setClase(Clase);
+                enemigo.setAtaque(Ataque);
+                enemigo.setExperienciaPorDerrota(ExperienciaporDerrota);
+                enemigo.setObejtoDejado(objetoDejado);
+                enemigo.setProbaDejarObjetos(probDejarObjeto);
+
+
+
+                eDao.crearEnemigo(enemigo);
+
+
+                break;
+
+            case "actualizar":
+
+
+                break;
+            /*
+            case "buscar":
+                String searchText = request.getParameter("searchText");
+
+                request.setAttribute("listaEnemigos", eDao.buscarEnemigos(searchText));
+                requestDispatcher = request.getRequestDispatcher("enemigo.jsp");
+                requestDispatcher.forward(request, response);
+                break;*/
+
+
+        }
     }
 }

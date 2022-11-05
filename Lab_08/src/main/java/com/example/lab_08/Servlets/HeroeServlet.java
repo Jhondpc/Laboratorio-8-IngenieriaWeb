@@ -82,22 +82,25 @@ public class HeroeServlet extends HttpServlet {
 
             case "crear":
 
-                String nombre=request.getParameter("nombre");
-                int edad= Integer.parseInt(request.getParameter("edad"));
-                String genero=request.getParameter("genero");
-                int nivelInicial= Integer.parseInt(request.getParameter("nivel"));
-                int ataque = Integer.parseInt(request.getParameter("ataque"));
-                int idPareja= Integer.parseInt(request.getParameter("idPareja"));
+                String nombre=request.getParameter("Nombre");
+                int edad= Integer.parseInt(request.getParameter("Edad"));
+                String genero=request.getParameter("Genero");
+                String clase = request.getParameter("Clase");
+                int nivelInicial= Integer.parseInt(request.getParameter("Nivel_Inicia"));
+                int ataque = Integer.parseInt(request.getParameter("Ataque"));
+                //int idPareja= Integer.parseInt(request.getParameter("IDPareja"));
 
 
                 Heroes heroe = new Heroes();
                 heroe.setNombre(nombre);
                 heroe.setEdad(edad);
                 heroe.setGenero(genero);
+                heroe.setClase(clase);
+
                 heroe.setNivelInicial(nivelInicial);
                 heroe.setAtaque(ataque);
                 //para el calculo de experiencia
-                float experiencia;
+                /*float experiencia;
                 if (heroe.getNivelInicial()>0 && heroe.getNivelInicial()>15){
 
                     experiencia= (float) ((Math.pow(heroe.getNivelInicial(),3)*(24+(heroe.getNivelInicial() + 1 ))/3 ) /50);
@@ -109,7 +112,7 @@ public class HeroeServlet extends HttpServlet {
                 } else if (heroe.getNivelInicial()>36 && heroe.getNivelInicial()>100) {
                     experiencia= (float) ( (Math.pow(heroe.getNivelInicial(),3)*( 32 +(heroe.getNivelInicial()/2) ) ) /50);
                     heroe.setPtosExperiencia(experiencia);
-                }
+                }*/
                 hDao.crearHeroe(heroe);
 
                 response.sendRedirect(request.getContextPath() + "/HeroeServlet");

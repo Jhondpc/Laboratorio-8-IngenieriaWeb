@@ -5,7 +5,9 @@
 <%
     ArrayList<Enemigos> listaEnemigos = (ArrayList<Enemigos>) request.getAttribute("listaEnemigos");
 %>
-
+<%
+    String searchText = (String) request.getAttribute("searchText");
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -113,11 +115,13 @@
                                             </div>
                                             <br>
                                             <div></div>
-                                            <form class="d-flex input-group w-auto">
+                                            <form method="post" class="d-flex input-group w-auto"
+                                                  action="<%=request.getContextPath()%>/EnemigoServlet?action=buscar">
                                                 <input
-                                                        type="search"
+                                                        type="text"
+                                                        name="searchText"
                                                         class="form-control rounded"
-                                                        placeholder="Buscar enemigo"
+                                                        placeholder="Buscar Enemigo"
                                                         aria-label="Search"
                                                         aria-describedby="search-addon"
                                                 />

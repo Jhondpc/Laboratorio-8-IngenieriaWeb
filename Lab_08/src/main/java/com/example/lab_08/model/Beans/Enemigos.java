@@ -7,9 +7,36 @@ public class Enemigos {
     private int edad;
     private String genero;
     private int experienciaPorDerrota;
-
     private int ataque;
-    private Clase clase;
+    private int clase;
+
+    private String obejtoDejado;
+
+    private float probaDejarObjetos;
+
+    public float getProbaDejarObjetos() {
+        return probaDejarObjetos;
+    }
+
+    public void setProbaDejarObjetos(float probaDejarObjetos) {
+        this.probaDejarObjetos = probaDejarObjetos;
+    }
+
+    public String getObejtoDejado() {
+        return obejtoDejado;
+    }
+
+    public void setObejtoDejado(String obejtoDejado) {
+        this.obejtoDejado = obejtoDejado;
+    }
+
+    public int getClase() {
+        return clase;
+    }
+
+    public void setClase(int clase) {
+        this.clase = clase;
+    }
 
     int idObjetoDejaDerrota; //duda: falta getter y setter
 
@@ -55,13 +82,7 @@ public class Enemigos {
         this.experienciaPorDerrota = experienciaPorDerrota;
     }
 
-    public Clase getClase() {
-        return clase;
-    }
 
-    public void setClase(Clase clase) {
-        this.clase = clase;
-    }
 
     public int getAtaque() {
         return ataque;

@@ -88,39 +88,36 @@
                                     <div>
                                         <div class="col-md-10 col-sm-10 col-lg-10">
                                             <h1>CREAR HÉROE</h1>
-                                            <form>
+                                            <form method="post" action="<%=request.getContextPath()%>/HeroeServlet?action=crear">
                                                 <div class="mb-3">
-                                                    <label for="jobId" class="arial">Nombre</label>
-                                                    <input type="text" class="form-control rounded" id="jobId" placeholder="Nombre" name="Nombre">
+                                                    <label for="Nombre" class="arial">Nombre</label>
+                                                    <input type="text" class="form-control rounded" id="Nombre" placeholder="Nombre" name="Nombre">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="jobTitle" class="form-label">Edad</label>
-                                                    <input type="text" class="form-control rounded" id="jobTitle" placeholder="Edad" name="Edad">
+                                                    <label for="Edad" class="form-label">Edad</label>
+                                                    <input type="text" class="form-control rounded" id="Edad" placeholder="Edad" name="Edad">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="minSalary" class="form-label">Género</label>
-                                                    <input type="text" class="form-control rounded" id="minSalary" placeholder="Género" name="Género">
+                                                    <label for="Género" class="form-label">Género</label>
+                                                    <input type="text" class="form-control rounded" id="Género" placeholder="Género" name="Genero">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="maxSalary" class="form-label">Clase</label>
-                                                    <input type="text" class="form-control rounded" id="maxSalary" placeholder="Clase" name="Clase">
+                                                    <label for="Clase" class="form-label">Clase</label>
+                                                    <input type="text" class="form-control rounded" id="Clase" placeholder="Clase" name="Clase">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="maxSalary" class="form-label">Nivel Inicial</label>
-                                                    <input type="text" class="form-control rounded" id="maxSalary" placeholder="Nivel Inicial" name="Nivel_Inicia">
+                                                    <label for="NivelInicial" class="form-label">Nivel Inicial</label>
+                                                    <input type="text" class="form-control rounded" id="NivelInicial" placeholder="Nivel Inicial" name="Nivel_Inicia">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="maxSalary" class="form-label">Ataque</label>
-                                                    <input type="text" class="form-control rounded" id="maxSalary" placeholder="Ataque" name="Ataque">
+                                                    <label for="Ataque" class="form-label">Ataque</label>
+                                                    <input type="text" class="form-control rounded" id="Ataque" placeholder="Ataque" name="Ataque">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="maxSalary" class="form-label">Pareja</label>
-                                                    <input type="text" class="form-control rounded" id="maxSalary" placeholder="ID Pareja" name="Pareja">
+                                                    <label for="Pareja" class="form-label">Pareja</label>
+                                                    <input type="text" class="form-control rounded" id="Pareja" placeholder="ID Pareja" name="IDPareja">
                                                 </div>
-                                                <div class="mb-3">
-                                                    <label for="maxSalary" class="form-label">Pts de Experiencia</label>
-                                                    <input type="text" class="form-control rounded" id="maxSalary" placeholder="Pts de Experiencia" name="PtsdeExperiencia">
-                                                </div>
+
                                                 <button type="submit" class="btn btn-primary">Guardar</button>
                                                 <a class="btn btn-danger" href="<%=request.getContextPath()%>/HeroeServlet">Regresar</a>
                                             </form>

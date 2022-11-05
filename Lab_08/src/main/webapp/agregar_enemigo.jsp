@@ -1,4 +1,7 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
 <html lang="en">
 
     <head>
@@ -87,33 +90,34 @@
                                     <div>
                                         <div class="col-md-10 col-sm-10 col-lg-10">
                                             <h1>CREAR ENEMIGO</h1>
-                                            <form>
+                                            <form method="post" action="<%=request.getContextPath()%>/EnemigoServlet?action=guardar">
+
                                                 <div class="mb-3">
-                                                    <label for="jobId" class="arial">Nombre</label>
-                                                    <input type="text" class="form-control rounded" id="jobId" placeholder="Nombre" name="jobId">
+                                                    <label for="Nombre" class="arial">Nombre</label>
+                                                    <input type="text" class="form-control rounded" id="Nombre" placeholder="Nombre" name="Nombre">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="jobTitle" class="form-label">Clase</label>
-                                                    <input type="text" class="form-control rounded" id="jobTitle" placeholder="Clase" name="jobTitle">
+                                                    <label for="Clase" class="form-label">Clase</label>
+                                                    <input type="text" class="form-control rounded" id="Clase" placeholder="Clase" name="Clase">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="minSalary" class="form-label">Ataque</label>
-                                                    <input type="text" class="form-control rounded" id="minSalary" placeholder="Ataque" name="minSalary">
+                                                    <label for="Ataque" class="form-label">Ataque</label>
+                                                    <input type="text" class="form-control rounded" id="Ataque" placeholder="Ataque" name="Ataque">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="maxSalary" class="form-label">Experiencia por Derrota</label>
-                                                    <input type="text" class="form-control rounded" id="maxSalary" placeholder="Experiencia por Derrota" name="maxSalary">
+                                                    <label for="ExperienciaporDerrota" class="form-label">Experiencia por Derrota</label>
+                                                    <input type="text" class="form-control rounded" id="ExperienciaporDerrota" placeholder="Experiencia por Derrota" name="ExperienciaporDerrota">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="maxSalary" class="form-label">Obejto dejado</label>
-                                                    <input type="text" class="form-control rounded" id="maxSalary" placeholder="Obejto dejado" name="maxSalary">
+                                                    <label for="Obejtodejado" class="form-label">Obejto dejado</label>
+                                                    <input type="text" class="form-control rounded" id="Obejtodejado" placeholder="Obejto dejado" name="Obejtodejado">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="maxSalary" class="form-label">Probabildiad de dejar Objetos</label>
-                                                    <input type="text" class="form-control rounded" id="maxSalary" placeholder="Probabildiad de dejar Objetos" name="maxSalary">
+                                                    <label for="ProbabildiaddedejarObjetos" class="form-label">Probabildiad de dejar Objetos</label>
+                                                    <input type="text" class="form-control rounded" id="ProbabildiaddedejarObjetos" placeholder="Probabildiad de dejar Objetos" name="ProbabildiaddedejarObjetos">
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Guardar</button>
-                                                <a class="btn btn-danger" href="<%=request.getContextPath()%>/EnemigoServlet">Regresar</a>
+                                                <a href="<%=request.getContextPath()%>/EnemigoServlet" class="btn btn-danger">Regresar</a>
                                             </form>
                                         </div>
                                     </div>

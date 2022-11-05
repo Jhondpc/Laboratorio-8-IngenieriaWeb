@@ -11,9 +11,16 @@ public class Heroes {
     private float ptosExperiencia; //puede salir decimal
 
     private int idPareja;
-    Clase clase; //duda
 
+    private String clase; //duda
 
+    public String getClase() {
+        return clase;
+    }
+
+    public void setClase(String clase) {
+        this.clase = clase;
+    }
 
     int cantidadObjetos; //duda: falta getter y setter
 
@@ -74,13 +81,7 @@ public class Heroes {
         this.ptosExperiencia = ptosExperiencia;
     }
 
-    public Clase getClase() {
-        return clase;
-    }
 
-    public void setClase(Clase clase) {
-        this.clase = clase;
-    }
 
     //Clase clase;
 
