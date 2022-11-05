@@ -10,15 +10,24 @@ public class Heroes {
     private int ataque;
     private float ptosExperiencia; //puede salir decimal
 
-    private int idPareja;
+    private String idPareja;
 
-    private String clase; //duda
+    public String getIdPareja() {
+        return idPareja;
+    }
 
-    public String getClase() {
+    public void setIdPareja(String idPareja) {
+        this.idPareja = idPareja;
+    }
+
+
+    private int clase; //duda
+
+    public int getClase() {
         return clase;
     }
 
-    public void setClase(String clase) {
+    public void setClase(int clase) {
         this.clase = clase;
     }
 

@@ -116,6 +116,10 @@
                                                     <label for="ProbabildiaddedejarObjetos" class="form-label">Probabildiad de dejar Objetos</label>
                                                     <input type="text" class="form-control rounded" id="ProbabildiaddedejarObjetos" placeholder="Probabildiad de dejar Objetos" name="ProbabildiaddedejarObjetos">
                                                 </div>
+                                                <div class="mb-3">
+                                                    <label for="Genero" class="form-label">Genero</label>
+                                                    <input type="text" class="form-control rounded" id="Genero" placeholder="Genero" name="Genero">
+                                                </div>
                                                 <button type="submit" class="btn btn-primary">Guardar</button>
                                                 <a href="<%=request.getContextPath()%>/EnemigoServlet" class="btn btn-danger">Regresar</a>
                                             </form>

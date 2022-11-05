@@ -9,12 +9,14 @@ import java.util.ArrayList;
 public class HeroeDao extends DaoBase{
 
     public ArrayList<Heroes> listarHeroes(){
-
         ArrayList<Heroes> listaHeroes = new ArrayList<>();
-
+        String sqlHeroe = "SELECT h.idheroes, h.nombre,  h.edad, h.genero, c.nombre, h.nivel_inicial, h.ataque, p.nombre, h.pts_x_experiencia\n" +
+                "                FROM heroes h \n" +
+                "                left join heroes p on (h.id_pareja = p.idheroes) \n" +
+                "                inner join clase c on (h.clase_idClase = c.idClase )";
         try (Connection connection = this.getConnection();
             Statement stm = connection.createStatement();
-            ResultSet rs = stm.executeQuery("select * from heroes")) {
+            ResultSet rs = stm.executeQuery(sqlHeroe)) {
 
 
             while(rs.next()){
@@ -23,18 +25,16 @@ public class HeroeDao extends DaoBase{
                 heroe.setNombre(rs.getString(2));
                 heroe.setEdad(rs.getInt(3));
                 heroe.setGenero(rs.getString(4));
-                heroe.setNivelInicial(rs.getInt(5));
-                heroe.setAtaque(rs.getInt(6));
-                heroe.setPtosExperiencia(rs.getInt(7));
+                heroe.setClase(rs.getInt(5));
+                heroe.setNivelInicial(rs.getInt(6));
+                heroe.setAtaque(rs.getInt(7));
+                heroe.setIdPareja(rs.getString(8));
+                heroe.setPtosExperiencia(rs.getInt(9));
                 listaHeroes.add(heroe);
             }
-
-
         } catch (SQLException throwables){
             throwables.printStackTrace();
         }
-
-
         return listaHeroes;
     }
 
@@ -50,7 +50,7 @@ public class HeroeDao extends DaoBase{
             pstmt.setString(1,heroe.getNombre());
             pstmt.setInt(2,heroe.getEdad());
             pstmt.setString(3,heroe.getGenero());
-            pstmt.setString(4, heroe.getClase());
+            pstmt.setInt(4, heroe.getClase());
             pstmt.setInt(5,heroe.getNivelInicial());
             pstmt.setInt(6,heroe.getAtaque());
             //pstmt.setInt(7,heroe.getIdPareja());

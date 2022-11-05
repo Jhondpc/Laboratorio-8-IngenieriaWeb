@@ -1,7 +1,8 @@
 package com.example.lab_08.Servlets;
 
+import com.example.lab_08.model.Beans.Enemigos;
 import com.example.lab_08.model.Beans.Heroes;
-import com.example.lab_08.model.Daos.HeroeDao;
+import com.example.lab_08.model.Daos.*;
 import com.example.lab_08.model.Beans.Heroes;
 import com.example.lab_08.model.Daos.HeroeDao;
 import jakarta.servlet.RequestDispatcher;
@@ -19,10 +20,10 @@ public class HeroeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String accion = request.getParameter("accion")==null?"listar":request.getParameter("accion");
+        String accion = request.getParameter("accion")==null?"inicio":request.getParameter("accion");
         RequestDispatcher view;
         HeroeDao hDao = new HeroeDao();
-        //ArrayList<Heroes> listaHeroes;
+        ArrayList<Heroes> listaHeroes;
         Heroes heroe;
         int idHeroe;
         switch (accion){
@@ -33,14 +34,13 @@ public class HeroeServlet extends HttpServlet {
                 view = request.getRequestDispatcher("heroes.jsp");
                 view.forward(request,response);
                 break;
-            case "listar":
+            /*case "listar":
 
                 //istaHeroes =
                 request.setAttribute("listaHeroes", hDao.listarHeroes());
                 view = request.getRequestDispatcher("heroes.jsp");
                 view.forward(request,response);
-                break;
-
+                break;*/
             case "editar":
                 idHeroe = Integer.parseInt(request.getParameter("id_heroe"));
                 heroe = hDao.buscarporIdHeroe(idHeroe);
@@ -85,7 +85,7 @@ public class HeroeServlet extends HttpServlet {
                 String nombre=request.getParameter("Nombre");
                 int edad= Integer.parseInt(request.getParameter("Edad"));
                 String genero=request.getParameter("Genero");
-                String clase = request.getParameter("Clase");
+                int clase = Integer.parseInt(request.getParameter("Clase"));
                 int nivelInicial= Integer.parseInt(request.getParameter("Nivel_Inicia"));
                 int ataque = Integer.parseInt(request.getParameter("Ataque"));
                 //int idPareja= Integer.parseInt(request.getParameter("IDPareja"));

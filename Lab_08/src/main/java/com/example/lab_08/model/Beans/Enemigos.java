@@ -8,7 +8,7 @@ public class Enemigos {
     private String genero;
     private int experienciaPorDerrota;
     private int ataque;
-    private int clase;
+    private String clase;
 
     private String obejtoDejado;
 
@@ -30,11 +30,11 @@ public class Enemigos {
         this.obejtoDejado = obejtoDejado;
     }
 
-    public int getClase() {
+    public String getClase() {
         return clase;
     }
 
-    public void setClase(int clase) {
+    public void setClase(String clase) {
         this.clase = clase;
     }
 

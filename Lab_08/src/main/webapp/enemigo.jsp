@@ -158,10 +158,9 @@
                                                     </td>
                                                     <td><%=enemigos.getExperienciaPorDerrota()%>
                                                     </td>
-                                                    <td><%=enemigos.getIdObjetoDejaDerrota()%>
+                                                    <td><%=enemigos.getObejtoDejado()%>
                                                     </td>
-
-                                                    <td><%=""%>
+                                                    <td><%=enemigos.getProbaDejarObjetos()%>
                                                     </td>
 
                                                     <td>

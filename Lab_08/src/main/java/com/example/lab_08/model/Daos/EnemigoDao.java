@@ -11,19 +11,25 @@ public class EnemigoDao extends DaoBase{
     public ArrayList<Enemigos> listarEnemigos(){
 
         ArrayList<Enemigos> listaEnemigos = new ArrayList<>();
-
+        String sql1 = "SELECT e.idEnemigos, e.nombres, c.nombre, e.ataque, e.experiencia_x_derrota , o.nombre, eo.probabilidad_dejar_objeto " +
+                "FROM enemigos e, clase c , enemigos_has_objeto_dejado_x_derrota eo, objeto_dejado_x_derrota o " +
+                "Where e.clase_idClase1 = c.idClase " +
+                "and   e.idEnemigos=eo.enemigos_idEnemigos " +
+                "and   eo.objeto_dejado_x_derrota_idobjeto_dejado_x_derrota =o.idobjeto_dejado_x_derrota";
         try (Connection connection = this.getConnection();
              Statement stm = connection.createStatement();
-             ResultSet rs = stm.executeQuery("SELECT * FROM enemigos")) {
+             ResultSet rs = stm.executeQuery(sql1) ) {
 
 
             while(rs.next()){
                 Enemigos enemigo = new Enemigos();
                 enemigo.setIdEnemigos(rs.getInt(1));
                 enemigo.setNombre(rs.getString(2));
-                enemigo.setGenero(rs.getString(3));
-                enemigo.setExperienciaPorDerrota(rs.getInt(4));
-                enemigo.setAtaque(rs.getInt(5));
+                enemigo.setClase(rs.getString(3));
+                enemigo.setAtaque(rs.getInt(4));
+                enemigo.setExperienciaPorDerrota(rs.getInt(5));
+                enemigo.setObejtoDejado(rs.getString(6));
+                enemigo.setProbaDejarObjetos(rs.getFloat(7));
 
                 listaEnemigos.add(enemigo);
             }
@@ -132,7 +138,7 @@ public class EnemigoDao extends DaoBase{
 
                     enemigo.setIdEnemigos(rs.getInt(1));
                     enemigo.setNombre(rs.getString(2));
-                    enemigo.setClase(rs.getInt(3));
+                    enemigo.setClase(rs.getString(3));
                     enemigo.setAtaque(rs.getInt(4));
                     enemigo.setExperienciaPorDerrota(rs.getInt(5));
                     enemigo.setIdObjetoDejaDerrota(rs.getInt(6));

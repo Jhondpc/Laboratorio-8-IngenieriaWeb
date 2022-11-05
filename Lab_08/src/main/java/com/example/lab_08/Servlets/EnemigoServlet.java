@@ -87,8 +87,7 @@ public class EnemigoServlet extends HttpServlet {
             case "guardar":
 
                 String NombreEne = request.getParameter("Nombre");
-                String Clasestr = request.getParameter("Clase");
-                int Clase = Integer.parseInt(Clasestr);
+                String Clase = request.getParameter("Clase");
                 String Ataquestr = request.getParameter("Ataque");
                 int Ataque = Integer.parseInt(Ataquestr);
                 String expstr = request.getParameter("ExperienciaporDerrota");

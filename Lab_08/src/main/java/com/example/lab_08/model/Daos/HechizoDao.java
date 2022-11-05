@@ -14,17 +14,21 @@ public class HechizoDao extends DaoBase {
 
         try (Connection connection = this.getConnection();
              Statement stm = connection.createStatement();
-             ResultSet rs = stm.executeQuery("select * from hechizo_magicos")) {
+             ResultSet rs = stm.executeQuery("SELECT h.idHechizoMagicos, h.nombre,  ele.nombre, h.potencia, h.precision, hb.nombre, h.nivel_aprendizaje\n" +
+                     "FROM hechizo_magicos h\n" +
+                     "left join elementos ele on (h.elementos_idelementos = ele.idelementos)\n" +
+                     "left join hechizo_magicos hb on (h.hechizo_base = hb.idHechizoMagicos)")) {
 
 
             while(rs.next()){
                 Hechizos hechizo = new Hechizos();
                 hechizo.setIdHechizos(rs.getInt(1));
                 hechizo.setNombre(rs.getString(2));
-                hechizo.setPotencia(rs.getInt(3));
-                hechizo.setPrecision(rs.getInt(4));
-                hechizo.setNivelAprendizaje(rs.getInt(5));
+                hechizo.setElemento(rs.getString(3));
+                hechizo.setPotencia(rs.getInt(4));
+                hechizo.setPrecision(rs.getInt(5));
                 hechizo.setHechizoBase(rs.getInt(6));
+                hechizo.setNivelAprendizaje(rs.getInt(7));
                 listaHechizos.add(hechizo);
             }
 

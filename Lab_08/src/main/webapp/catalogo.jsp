@@ -144,7 +144,7 @@
                                                         </td>
                                                         <td><%=objetos.getPeso()%>
                                                         </td>
-                                                        <td><%=""%>
+                                                        <td><%="Sí"%>
                                                         </td>
 
                                                         <td>
