@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class EnemigoDao extends DaoBase{
 
-    public ArrayList<Enemigos> listarHeroes(){
+    public ArrayList<Enemigos> listarEnemigos(){
 
         ArrayList<Enemigos> listaEnemigos = new ArrayList<>();
 
@@ -62,7 +62,7 @@ public class EnemigoDao extends DaoBase{
     }
 
 
-    public void editarHeroe(String nombreUpdate, int edadUpdate, String generoUpdate, int nivelUpdate, int id_parejaUpdate, int ataqueUpdate){
+    public void editarEnemigo(String nombreUpdate, int edadUpdate, String generoUpdate, int nivelUpdate, int id_parejaUpdate, int ataqueUpdate){
 
         String sql = "update enemigos set nombre=?,edad=?,genero=?,nivel_inicial=?,ataque=?,id_pareja=? where id_heroe=?";
         try (Connection connection = this.getConnection();
@@ -87,7 +87,7 @@ public class EnemigoDao extends DaoBase{
 
     }
 
-    public void borrarheroe(int idHeroe){
+    public void borrarEnemigo(int idHeroe){
         String sql = "DELETE FROM heroes WHERE idHeroe = ?"; //sentencia de sql para eliminar un registro a partir del id que ingresa el usuario
 
         try (Connection connection = this.getConnection();

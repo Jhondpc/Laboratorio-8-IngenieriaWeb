@@ -61,7 +61,7 @@
                                         <nav class="main-menu">
                                             <ul class="menu-area-main">
 
-                                                <li> <a href="enemigo.html">Volver</a> </li>
+                                                <li> <a href="<%=request.getContextPath()%>/EnemigoServlet">Volver</a> </li>
 
                                             </ul>
                                         </nav>

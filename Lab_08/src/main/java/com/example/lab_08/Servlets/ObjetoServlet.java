@@ -15,6 +15,11 @@ public class ObjetoServlet extends HttpServlet {
 
         switch (accion){
 
+            case "inicio": //crear
+                view = request.getRequestDispatcher("catalogo.jsp");
+                view.forward(request,response);
+                break;
+
             case "agregarObjeto":
                 view = request.getRequestDispatcher("agregar_objeto.jsp");
                 view.forward(request,response);

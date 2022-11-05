@@ -19,20 +19,23 @@ public class HeroeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String accion = request.getParameter("accion")==null?"inicio":request.getParameter("accion");
+        String accion = request.getParameter("accion")==null?"listar":request.getParameter("accion");
         RequestDispatcher view;
         HeroeDao hDao = new HeroeDao();
-        ArrayList<Heroes> listaHeroes = null;
+        //ArrayList<Heroes> listaHeroes;
         Heroes heroe;
         int idHeroe;
         switch (accion){
 
             case "inicio":
+
+                //request.setAttribute("listaHeroes", listaHeroes);
                 view = request.getRequestDispatcher("heroes.jsp");
                 view.forward(request,response);
                 break;
             case "listar":
 
+                //istaHeroes =
                 request.setAttribute("listaHeroes", hDao.listarHeroes());
                 view = request.getRequestDispatcher("heroes.jsp");
                 view.forward(request,response);

@@ -25,7 +25,7 @@ public class HeroeDao extends DaoBase{
                 heroe.setGenero(rs.getString(4));
                 heroe.setNivelInicial(rs.getInt(5));
                 heroe.setAtaque(rs.getInt(6));
-                heroe.setPtosExperiencia(rs.getInt(8));
+                heroe.setPtosExperiencia(rs.getInt(7));
                 listaHeroes.add(heroe);
             }
 

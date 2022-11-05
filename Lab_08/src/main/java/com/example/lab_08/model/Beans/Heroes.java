@@ -10,8 +10,10 @@ public class Heroes {
     private int ataque;
     private float ptosExperiencia; //puede salir decimal
 
-    //private int idPareja;
+    private int idPareja;
     Clase clase; //duda
+
+
 
     int cantidadObjetos; //duda: falta getter y setter
 

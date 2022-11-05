@@ -1,4 +1,12 @@
+<%@ page import="com.example.lab_08.model.Beans.Enemigos" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    ArrayList<Enemigos> listaEnemigos = (ArrayList<Enemigos>) request.getAttribute("listaEnemigos");
+%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
