@@ -23,22 +23,27 @@ public class HechizoServlet extends HttpServlet {
 
         switch (accion){
 
+            case "inicio": //crear
+                view = request.getRequestDispatcher("heroes.jsp");
+                view.forward(request,response);
+                break;
+
             case "agregarHechizo": //crear
                 view = request.getRequestDispatcher("agregar_hechizo.jsp");
                 view.forward(request,response);
                 break;
             /*
             case "borrar":  // JobServlet?action=borrar&id=50
-                idHechizo = Integer.parseInt(request.getParameter("id_enemigo"));
-                hDao.borrarhechizo(idHechizo);
+                idHechizo = Integer.parseInt(request.getParameter("id_hechizo"));
+                hDao.borrarHechizo(idHechizo);
 
-                response.sendRedirect(request.getContextPath() + "/EnemigoServlet");
+                response.sendRedirect(request.getContextPath() + "/HechizoServlet");
                 break;
                 */
             case "listar":
 
-                request.setAttribute("listaEnemigos", hDao.listarHechizos());
-                view = request.getRequestDispatcher("enemigos.jsp");
+                request.setAttribute("listaHechizos", hDao.listarHechizos());
+                view = request.getRequestDispatcher("hechizos.jsp");
                 view.forward(request,response);
                 break;
         }

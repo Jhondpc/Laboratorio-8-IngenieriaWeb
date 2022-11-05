@@ -129,7 +129,7 @@
                                 para mejorar la presición y potencia de sus hechizos.
 
                             </p>
-                            <a href="heroes.html">Conoce más</a>
+                            <a href="<%=request.getContextPath()%>/HeroeServlet">Conoce más</a>
 
                         </div>
                     </div>

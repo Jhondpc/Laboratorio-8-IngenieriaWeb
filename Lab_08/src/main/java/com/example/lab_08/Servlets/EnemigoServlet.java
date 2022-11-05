@@ -1,6 +1,8 @@
 package com.example.lab_08.Servlets;
 
+import com.example.lab_08.model.Beans.Enemigos;
 import com.example.lab_08.model.Beans.Heroes;
+import com.example.lab_08.model.Daos.EnemigoDao;
 import com.example.lab_08.model.Daos.HeroeDao;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -19,35 +21,40 @@ public class EnemigoServlet extends HttpServlet {
 
         String accion = request.getParameter("accion")==null?"inicio":request.getParameter("accion");
         RequestDispatcher view;
-        HeroeDao hDao = new HeroeDao();
-        ArrayList<Heroes> listaHeroes = null;
-        Heroes heroe;
-        int idHeroe;
+        EnemigoDao eDao = new EnemigoDao();
+        ArrayList<Enemigos> listaEnemigos;
+        Enemigos enemigo;
+        int idEnemigo;
         switch (accion){
+
+            case "inicio": //crear
+                view = request.getRequestDispatcher("enemigos.jsp");
+                view.forward(request,response);
+                break;
 
             case "listar":
 
-                request.setAttribute("listaHeroes", hDao.listarHeroes());
-                view = request.getRequestDispatcher("/Heroe/heroes.jsp");
+                request.setAttribute("listaEnemigos", eDao.listarEnemigos());
+                view = request.getRequestDispatcher("enemigos.jsp");
                 view.forward(request,response);
                 break;
 
             case "editar":
-                idHeroe = Integer.parseInt(request.getParameter("id_heroe"));
-                heroe = hDao.buscarporIdHeroe(idHeroe);
+                idEnemigo = Integer.parseInt(request.getParameter("id_heroe"));
+                enemigo = eDao.buscarporIdEnemigo(idEnemigo);
 
-                if (heroe != null){
-                    request.setAttribute("heroe", heroe);
-                    view = request.getRequestDispatcher("/Heroe/editarHeroe.jsp");
+                if (enemigo != null){
+                    request.setAttribute("enemigo", enemigo);
+                    view = request.getRequestDispatcher("editarEnemigo.jsp");
                     view.forward(request,response);
                 } else {
                     //id no encontrado
-                    response.sendRedirect(request.getContextPath() + "/HeroeServlet");
+                    response.sendRedirect(request.getContextPath() + "/EnemigoServlet");
                 }
                 break;
 
             case "crear":
-                view = request.getRequestDispatcher("agregar_heroe.jsp");
+                view = request.getRequestDispatcher("agregar_enemigo.jsp");
                 view.forward(request,response);
                 break;
             case "clase":
@@ -56,8 +63,8 @@ public class EnemigoServlet extends HttpServlet {
                 break;
 
             case "borrar":  // JobServlet?action=borrar&id=50
-                idHeroe = Integer.parseInt(request.getParameter("id_heroe"));
-                hDao.borrarheroe(idHeroe);
+                idEnemigo = Integer.parseInt(request.getParameter("id_heroe"));
+                eDao.borrarEnemigo(idEnemigo);
 
                 response.sendRedirect(request.getContextPath() + "/HeroeServlet");
                 break;

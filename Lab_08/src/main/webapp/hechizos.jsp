@@ -1,4 +1,11 @@
+<%@ page import="com.example.lab_08.model.Beans.Hechizos" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
+<%
+    ArrayList<Hechizos> listaHechizos = (ArrayList<Hechizos>) request.getAttribute("listaHechizos");
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -126,11 +133,33 @@
 
                                                         </tr>
                                                     </thead>
-                                                    <!--
-												<tbody>
 
+                                                    <tbody>
+                                                    <%
+                                                        for (Hechizos hechizos : listaHechizos) { %>
+                                                    <tr>
+                                                        <td><%=hechizos.getIdHechizos()%>
+                                                        </td>
+                                                        <td><%=hechizos.getNombre()%>
+                                                        </td>
+                                                        <td><%=hechizos.getElemento()%>
+                                                        </td>
+                                                        <td><%=hechizos.getPotencia()%>
+                                                        </td>
+                                                        <td><%=hechizos.getPrecision()%>
+                                                        </td>
+                                                        <td><%=hechizos.getHechizoBase()%>
+                                                        </td>
+                                                        <td><%=hechizos.getNivelAprendizaje()%>
+                                                        </td>
 
-												</tbody>-->
+                                                    </tr>
+                                                    <%
+                                                        }
+
+                                                    %>
+                                                    </tbody>
+
                                                 </table>
                                             </div>
                                         </div>
