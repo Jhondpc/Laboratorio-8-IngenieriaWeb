@@ -1,4 +1,13 @@
+<%@ page import="com.example.lab_08.model.Beans.Clase" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
+<%
+    ArrayList<Clase> listaClase = (ArrayList<Clase>) request.getAttribute("listaClase");
+%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,7 +70,7 @@
                                         <nav class="main-menu">
                                             <ul class="menu-area-main">
 
-                                                <li> <a href="<%=request.getContextPath()%>/EnemigoServlet">Volver</a> </li>
+                                                <li> <a href="<%=request.getContextPath()%>/index?action=enemigos">Volver</a> </li>
 
                                             </ul>
                                         </nav>
@@ -106,11 +115,37 @@
 
                                                     </tr>
                                                 </thead>
-                                                <!--
-												<tbody>
+
+                                                <tbody>
+                                                <%
+                                                    for (Clase clase : listaClase) { %>
+                                                <tr>
+                                                    <td><%=clase.getIdClase()%>
+                                                    </td>
+                                                    <td><%=clase.getNombre()%>
+                                                    </td>
+
+                                                    <td>
+
+                                                        <a
+
+                                                            class="btn btn-danger" href="<%=request.getContextPath()%>/EnemigoServlet?accion=elements"
+                                                            role="button">Debilidades y Fortalezas
+
+                                                        </a>
+
+                                                    </td>
+
+                                                </tr>
+                                                <%
+                                                    }
+
+                                                %>
+                                                </tbody>
 
 
-												</tbody>-->
+
+
                                             </table>
                                         </div>
                                 </div>

@@ -152,6 +152,14 @@
                                                         </td>
                                                         <td><%=hechizos.getNivelAprendizaje()%>
                                                         </td>
+                                                        <td>
+                                                            <a
+                                                                    onclick="return confirm('¿Estas seguro(a) que deseas borrar?')"
+                                                                    class="btn btn-danger" href="<%=request.getContextPath()%>/HechizpServlet?action=borrar&id=<%=hechizos.getIdHechizos()%>"
+                                                                    role="button">Eliminar
+                                                            </a>
+                                                        </td>
+
 
                                                     </tr>
                                                     <%

@@ -2,6 +2,8 @@ package com.example.lab_08.Servlets;
 
 import com.example.lab_08.model.Beans.Enemigos;
 import com.example.lab_08.model.Beans.Heroes;
+import com.example.lab_08.model.Daos.ClaseDao;
+import com.example.lab_08.model.Daos.ElementoDao;
 import com.example.lab_08.model.Daos.EnemigoDao;
 import com.example.lab_08.model.Daos.HeroeDao;
 import jakarta.servlet.RequestDispatcher;
@@ -24,18 +26,21 @@ public class EnemigoServlet extends HttpServlet {
         EnemigoDao eDao = new EnemigoDao();
         ArrayList<Enemigos> listaEnemigos;
         Enemigos enemigo;
+        ClaseDao cDao = new ClaseDao();
+        ElementoDao eleDao= new ElementoDao();
+
         int idEnemigo;
         switch (accion){
 
             case "inicio": //crear
-                view = request.getRequestDispatcher("enemigos.jsp");
+                view = request.getRequestDispatcher("enemigo.jsp");
                 view.forward(request,response);
                 break;
 
-            case "listar":
+            case "elements":
 
-                request.setAttribute("listaEnemigos", eDao.listarEnemigos());
-                view = request.getRequestDispatcher("enemigos.jsp");
+                request.setAttribute("listaElementos", eleDao.listarElemento());
+                view = request.getRequestDispatcher("debilidades_fortalezas.jsp");
                 view.forward(request,response);
                 break;
 
@@ -58,6 +63,8 @@ public class EnemigoServlet extends HttpServlet {
                 view.forward(request,response);
                 break;
             case "clase":
+
+                request.setAttribute("listaClase", cDao.listarClases());
                 view = request.getRequestDispatcher("clase_enemigos.jsp");
                 view.forward(request,response);
                 break;
