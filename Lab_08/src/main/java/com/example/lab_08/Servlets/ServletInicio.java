@@ -34,6 +34,12 @@ public class ServletInicio extends HttpServlet {
                 requestDispatcher = request.getRequestDispatcher("heroes.jsp");
                 requestDispatcher.forward(request, response);
                 break;
+            case "inventario":
+                String nomHeroe = request.getParameter("nombreHeroe");
+                request.setAttribute("listaInventario", hDao.listarInvObjetos(nomHeroe));
+                requestDispatcher = request.getRequestDispatcher("inventarioObjetos.jsp");
+                requestDispatcher.forward(request, response);
+                break;
             case "enemigos":
 
                 request.setAttribute("listaEnemigos", eDao.listarEnemigos());

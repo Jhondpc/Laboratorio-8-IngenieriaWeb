@@ -2,6 +2,7 @@ package com.example.lab_08.model.Daos;
 
 import com.example.lab_08.model.Beans.Heroes;
 import com.example.lab_08.model.Beans.Heroes;
+import com.example.lab_08.model.Beans.InventarioHeroe;
 import com.example.lab_08.model.Beans.InventarioObjetos;
 
 import java.sql.*;
@@ -175,30 +176,28 @@ public class HeroeDao extends DaoBase{
 
     }
 
-    public ArrayList<InventarioObjetos> listarInvObjetos(){
-        ArrayList<InventarioObjetos> listaObj = new ArrayList<>();
-        String sql = "SELECT  he.nombre, inv.nombre, hi.cantidad_objetos\n" +
-                "FROM heroes_has_inventarioobjetos hi, heroes he, inventarioobjetos inv\n" +
-                "where inv.idInventarioObjetos = hi.inventarioobjetos_idInventarioObjetos\n" +
-                " and he.idheroes = hi.heroes_idheroes and he.nombre = 'Jorge'\n";
+    public ArrayList<InventarioHeroe> listarInvObjetos(String nomHeroe){
+        ArrayList<InventarioHeroe> listaObj = new ArrayList<>();
+
+        String sql = "SELECT  he.nombre, inv.nombre, inv.uso, inv.peso, hi.cantidad_objetos " +
+                "                FROM heroes_has_inventarioobjetos hi, heroes he, inventarioobjetos inv " +
+                "                where inv.idInventarioObjetos = hi.inventarioobjetos_idInventarioObjetos " +
+                "               and he.idheroes = hi.heroes_idheroes and he.nombre = ? ";
         try (Connection connection = this.getConnection();
-             Statement stm = connection.createStatement();
-             ResultSet rs = stm.executeQuery(sql)) {
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
+            pstmt.setString(1, nomHeroe);
 
+            ResultSet rs = pstmt.executeQuery();
             while(rs.next()){
-                InventarioObjetos objetos = new InventarioObjetos();
+                InventarioHeroe invHeroe = new InventarioHeroe();
+                invHeroe.setNombreHeroe(rs.getString(1));
+                invHeroe.setNombreObjeto(rs.getString(2));
+                invHeroe.setUso(rs.getString(3));
+                invHeroe.setPeso(rs.getInt(4));
+                invHeroe.setCantObjetos(rs.getInt(5));
 
-                //heroe.setIdHeroes(rs.getInt(1));
-                //heroe.setNombre(rs.getString(2));
-                //heroe.setEdad(rs.getInt(3));
-                //eroe.setGenero(rs.getString(4));
-                //heroe.setClase(rs.getString(5));
-                //heroe.setNivelInicial(rs.getInt(6));
-               // heroe.setAtaque(rs.getInt(7));
-                //heroe.setIdPareja(rs.getInt(8));
-                //heroe.setPtosExperiencia(rs.getInt(9));
-                listaObj.add(objetos);
+                listaObj.add(invHeroe);
             }
         } catch (SQLException throwables){
             throwables.printStackTrace();

@@ -181,8 +181,8 @@
                                                             <td>
 
                                                                 <a
-                                                                        onclick="return confirm('¿Estas seguro(a) que deseas borrar?')"
-                                                                        class="btn btn-danger" href="<%=request.getContextPath()%>/HeroeServlet?action=borrar&id=<%=heroes.getIdHeroes()%>"
+
+                                                                        class="btn btn-danger" href="<%=request.getContextPath()%>//index?action=inventario&nombreHeroe=<%=heroes.getNombre()%>"
                                                                         role="button">Ver Inventario
 
                                                                 </a>
