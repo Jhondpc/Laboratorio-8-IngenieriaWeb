@@ -30,10 +30,11 @@ public class HeroeServlet extends HttpServlet {
 
             case "inicio":
 
-                //request.setAttribute("listaHeroes", listaHeroes);
-                view = request.getRequestDispatcher("heroes.jsp");
-                view.forward(request,response);
+                request.setAttribute("listaHeroes", hDao.listarHeroes());
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("heroes.jsp");
+                requestDispatcher.forward(request, response);
                 break;
+                
             case "listar":
 
                 //istaHeroes =
@@ -82,20 +83,31 @@ public class HeroeServlet extends HttpServlet {
 
             case "guardar":
 
-                String nombre=request.getParameter("Nombre");
-                int edad= Integer.parseInt(request.getParameter("Edad"));
-                String genero=request.getParameter("Genero");
-                String clase = request.getParameter("Clase");
-                int nivelInicial= Integer.parseInt(request.getParameter("Nivel_Inicial"));
+                String nombre = request.getParameter("Nombre");
+                int edad = Integer.parseInt(request.getParameter("Edad"));
+                String genero = request.getParameter("Genero");
+                String clase = request.getParameter("Clase"); //en la tabla va idclase
+                int idClase = 0;
+                int nivelInicial = Integer.parseInt(request.getParameter("NivelInicial"));
                 int ataque = Integer.parseInt(request.getParameter("Ataque"));
-                int idPareja= Integer.parseInt(request.getParameter("IDPareja"));
+                int idPareja = Integer.parseInt(request.getParameter("IDPareja"));
 
-
+                switch (clase){
+                    case "Dragon": idClase = 1; break;
+                    case "Fantasma": idClase = 2; break;
+                    case "Demonio": idClase = 3; break;
+                    case "Pez": idClase = 4; break;
+                    case "Humano": idClase = 5; break;
+                    case "Bestia": idClase = 6; break;
+                    case "Ave": idClase = 7; break;
+                    case "Otros": idClase = 8; break;
+                }
+                
                 Heroes heroe = new Heroes();
                 heroe.setNombre(nombre);
                 heroe.setEdad(edad);
                 heroe.setGenero(genero);
-                heroe.setClase(clase);
+                heroe.setIdClase(idClase);
                 heroe.setNivelInicial(nivelInicial);
                 heroe.setAtaque(ataque);
                 heroe.setIdPareja(idPareja);

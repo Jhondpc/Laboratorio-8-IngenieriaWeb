@@ -8,8 +8,9 @@ public class Heroes {
     private String genero;
     private int nivelInicial;
     private int ataque;
-    private float ptosExperiencia; //puede salir decimal
-
+    private float ptosExperiencia;
+    private String clase;
+    private int idClase;
     private String pareja;
 
     private int idPareja;
@@ -29,9 +30,6 @@ public class Heroes {
     public void setPareja(String pareja) {
         this.pareja = pareja;
     }
-
-
-    private String clase; //duda
 
     public String getClase() {
         return clase;
@@ -100,9 +98,15 @@ public class Heroes {
         this.ptosExperiencia = ptosExperiencia;
     }
 
+    public int getIdClase() {
+        return idClase;
+    }
 
+    public void setIdClase(int idClase) {
+        this.idClase = idClase;
+    }
 
-    //Clase clase;
+//Clase clase;
 
 
 

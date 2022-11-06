@@ -11,9 +11,11 @@ public class HeroeDao extends DaoBase{
 
     public ArrayList<Heroes> listarHeroes(){
         ArrayList<Heroes> listaHeroes = new ArrayList<>();
-        String sqlHeroe = "SELECT h.idheroes, h.nombre,  h.edad, h.genero, c.nombre, h.nivel_inicial, h.ataque, p.idheroes, h.pts_x_experiencia FROM heroes h \n" +
-                "left join heroes p on (h.id_pareja = p.idheroes) \n" +
-                "inner join clase c on (h.clase_idClase = c.idClase)";
+        String sqlHeroe = "SELECT h.idheroes, h.nombre,  h.edad, case when h.genero='M' then 'Masculino'\n" +
+                "                when h.genero='F' then 'Femenino' when h.genero='O' then 'Otros' end,\n" +
+                "                c.nombre, h.nivel_inicial, h.ataque, p.idheroes, h.pts_x_experiencia FROM heroes h\n" +
+                "                left join heroes p on (h.id_pareja = p.idheroes) \n" +
+                "                inner join clase c on (h.clase_idClase = c.idClase)";
         try (Connection connection = this.getConnection();
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery(sqlHeroe)) {
@@ -54,7 +56,7 @@ public class HeroeDao extends DaoBase{
             pstmt.setInt(5,heroe.getAtaque());
             pstmt.setInt(6,heroe.getIdPareja());
             pstmt.setFloat(7,heroe.getPtosExperiencia());
-            pstmt.setString(8, heroe.getClase());
+            pstmt.setInt(8, heroe.getIdClase());
 
             pstmt.executeUpdate();
 

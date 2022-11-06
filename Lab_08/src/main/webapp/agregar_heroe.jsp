@@ -98,8 +98,8 @@
                                                     <input type="text" class="form-control rounded" id="Edad" placeholder="Edad" name="Edad">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="Género" class="form-label">Género</label>
-                                                    <input type="text" class="form-control rounded" id="Género" placeholder="Género" name="Genero">
+                                                    <label for="Genero" class="form-label">Género</label>
+                                                    <input type="text" class="form-control rounded" id="Genero" placeholder="Genero" name="Genero">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="Clase" class="form-label">Clase</label>
@@ -107,15 +107,15 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="NivelInicial" class="form-label">Nivel Inicial</label>
-                                                    <input type="text" class="form-control rounded" id="NivelInicial" placeholder="Nivel Inicial" name="Nivel_Inicia">
+                                                    <input type="text" class="form-control rounded" id="NivelInicial" placeholder="Nivel Inicial" name="NivelInicial">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="Ataque" class="form-label">Ataque</label>
                                                     <input type="text" class="form-control rounded" id="Ataque" placeholder="Ataque" name="Ataque">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="Pareja" class="form-label">Pareja</label>
-                                                    <input type="text" class="form-control rounded" id="Pareja" placeholder="ID Pareja" name="IDPareja">
+                                                    <label for="IDPareja" class="form-label">Pareja</label>
+                                                    <input type="text" class="form-control rounded" id="IDPareja" placeholder="ID Pareja" name="IDPareja">
                                                 </div>
 
                                                 <button type="submit" class="btn btn-primary">Guardar</button>
