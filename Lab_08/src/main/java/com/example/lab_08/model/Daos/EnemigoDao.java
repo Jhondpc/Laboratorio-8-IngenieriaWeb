@@ -113,47 +113,39 @@ public class EnemigoDao extends DaoBase{
 
 
     public ArrayList<Enemigos> buscarEnemigos(String nombreEnemigo){
-
-        ArrayList<Enemigos> buscarEnemigos = new ArrayList<>();
-
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        String url = "jdbc:mysql://localhost:3306/mydb?serverTimezone=America/Lima";
-        String sql = "SELECT * FROM mydb.enemigos WHERE lower(nombre) like ?";
-
-        try(Connection conn = DriverManager.getConnection(url, "root", "root");
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        ArrayList<Enemigos> listaEnemigos = new ArrayList<>();
+        String sql1 = "SELECT e.idEnemigos, e.nombres, c.nombre, e.ataque, e.experiencia_x_derrota , o.nombre, eo.probabilidad_dejar_objeto " +
+                "FROM enemigos e, clase c , enemigos_has_objeto_dejado_x_derrota eo, objeto_dejado_x_derrota o " +
+                "Where lower(e.nombres) like ? and e.clase_idClase1 = c.idClase " +
+                "and   e.idEnemigos=eo.enemigos_idEnemigos " +
+                "and   eo.objeto_dejado_x_derrota_idobjeto_dejado_x_derrota =o.idobjeto_dejado_x_derrota ";
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql1)) {
 
             pstmt.setString(1, "%"+nombreEnemigo+"%");
 
+            ResultSet rs = pstmt.executeQuery();
 
+            while(rs.next()){
+                Enemigos enemigo = new Enemigos();
+                enemigo.setIdEnemigos(rs.getInt(1));
+                enemigo.setNombre(rs.getString(2));
+                enemigo.setClase(rs.getString(3));
+                enemigo.setAtaque(rs.getInt(4));
+                enemigo.setExperienciaPorDerrota(rs.getInt(5));
+                enemigo.setObejtoDejado(rs.getString(6));
+                enemigo.setProbaDejarObjetos(rs.getFloat(7));
 
-            try (ResultSet rs = pstmt.executeQuery()){
-                while (rs.next()){
-                    Enemigos enemigo = new Enemigos();
-
-                    enemigo.setIdEnemigos(rs.getInt(1));
-                    enemigo.setNombre(rs.getString(2));
-                    enemigo.setClase(rs.getString(3));
-                    enemigo.setAtaque(rs.getInt(4));
-                    enemigo.setExperienciaPorDerrota(rs.getInt(5));
-                    enemigo.setIdObjetoDejaDerrota(rs.getInt(6));
-
-
-                    listarEnemigos().add(enemigo);
-
-                }
+                listaEnemigos.add(enemigo);
             }
 
-        }catch (SQLException e){
-            throw new RuntimeException();
+
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
         }
 
-        return listarEnemigos();
+
+        return listaEnemigos;
 
     }
 

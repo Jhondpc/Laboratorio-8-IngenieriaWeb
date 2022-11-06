@@ -107,9 +107,11 @@
                                                 </div>
                                                 <br>
                                                 <div></div>
-                                                <form class="d-flex input-group w-auto">
+                                                <form  method="post" action="<%=request.getContextPath()%>/HeroeServlet?action=buscar"
+                                                        class="d-flex input-group w-auto">
                                                     <input
-                                                            type="search"
+                                                            type="text"
+                                                            name="searchText"
                                                             class="form-control rounded"
                                                             placeholder="Buscar héroe"
                                                             aria-label="Search"

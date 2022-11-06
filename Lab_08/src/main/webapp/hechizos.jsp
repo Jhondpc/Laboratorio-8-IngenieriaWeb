@@ -107,18 +107,9 @@
                                                 </div>
                                                 <br>
                                                 <div></div>
-                                                <form class="d-flex input-group w-auto">
-                                                    <input
-                                                            type="search"
-                                                            class="form-control rounded"
-                                                            placeholder="Buscar hechizo"
-                                                            aria-label="Search"
-                                                            aria-describedby="search-addon"
-                                                    />
 
-                                                </form>
 
-                                                <br>
+
                                                 <table class="table table-striped table-hover">
                                                     <thead>
                                                         <tr style="align-content: center">

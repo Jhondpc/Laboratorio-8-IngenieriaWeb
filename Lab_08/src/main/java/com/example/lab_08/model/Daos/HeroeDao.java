@@ -110,69 +110,75 @@ public class HeroeDao extends DaoBase{
     }
 
 
-    public Heroes buscarporIdHeroe(int idHeroe){
+    public Heroes buscarporIdHeroe(String idHeroe){
 
-        Heroes heroe = null;
+        Heroes heroeEdit = null;
 
-        String sql = "select * from heroes where idHeroe=?";
-
+        String sql = "select * from heroes WHERE idheroes = ?";
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setInt(1, idHeroe);
+            pstmt.setString(1, idHeroe);
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    heroe = new Heroes(); //instanciando al heroe
-                    heroe.setIdHeroes(rs.getInt(1));
-                    heroe.setEdad(rs.getInt(2));
-                    heroe.setGenero(rs.getString(3));
-                    heroe.setNivelInicial(rs.getInt(4));
-                    heroe.setAtaque(rs.getInt(5));
+                    heroeEdit = new Heroes();
+                    heroeEdit.setIdHeroes(rs.getInt(1));
+                    heroeEdit.setNombre(rs.getString(2));
+                    heroeEdit.setEdad(rs.getInt(3));
+                    heroeEdit.setGenero(rs.getString(4));
+                    heroeEdit.setClase(rs.getString(5));
+                    heroeEdit.setNivelInicial(rs.getInt(6));
+                    heroeEdit.setAtaque(rs.getInt(7));
+                    heroeEdit.setIdPareja(rs.getInt(8));
+                    heroeEdit.setPtosExperiencia(rs.getInt(9));
+
 
                 }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
-        return heroe;
+        return heroeEdit;
 
     }
 
 
     public ArrayList<Heroes> buscarporNombreHeroe(String nombreHeroe){
 
-        ArrayList<Heroes> listaHeroes = null;
+        ArrayList<Heroes> listaHeroes = new ArrayList<>();
+        String sql = "SELECT h.idheroes, h.nombre,  h.edad, case when h.genero='M' then 'Masculino'\n" +
+                "        when h.genero='F' then 'Femenino' when h.genero='O' then 'Otros' end,\n" +
+                "         c.nombre, h.nivel_inicial, h.ataque, p.idheroes, h.pts_x_experiencia FROM heroes h\n" +
+                "         left join heroes p on (h.id_pareja = p.idheroes)\n" +
+                "         inner join clase c on (h.clase_idClase = c.idClase) WHERE lower(h.nombre) like ? ";
 
-        String sql = "select * from heroes where nombre=?";
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setString(1, nombreHeroe);
+            pstmt.setString(1, "%"+nombreHeroe+"%");
 
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
+            ResultSet rs = pstmt.executeQuery();
 
-                    Heroes heroe = new Heroes();
-                    heroe.setIdHeroes(rs.getInt(1));
-                    heroe.setEdad(rs.getInt(2));
-                    heroe.setGenero(rs.getString(3));
-                    heroe.setNivelInicial(rs.getInt(4));
-                    heroe.setAtaque(rs.getInt(5));
-
-                    listaHeroes.add(heroe);
-
-                }
+            while(rs.next()){
+                Heroes HeroeBuscar = new Heroes();
+                HeroeBuscar.setIdHeroes(rs.getInt(1));
+                HeroeBuscar.setNombre(rs.getString(2));
+                HeroeBuscar.setEdad(rs.getInt(3));
+                HeroeBuscar.setGenero(rs.getString(4));
+                HeroeBuscar.setClase(rs.getString(5));
+                HeroeBuscar.setNivelInicial(rs.getInt(6));
+                HeroeBuscar.setAtaque(rs.getInt(7));
+                HeroeBuscar.setIdPareja(rs.getInt(8));
+                HeroeBuscar.setPtosExperiencia(rs.getInt(9));
+                listaHeroes.add(HeroeBuscar);
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
         }
-
-
         return listaHeroes;
+
 
     }
 

@@ -118,14 +118,17 @@ public class EnemigoServlet extends HttpServlet {
 
 
                 break;
-            /*
+
             case "buscar":
                 String searchText = request.getParameter("searchText");
 
-                request.setAttribute("listaEnemigos", eDao.buscarEnemigos(searchText));
-                requestDispatcher = request.getRequestDispatcher("enemigo.jsp");
+                ArrayList<Enemigos> listaEnemigos = eDao.buscarEnemigos(searchText);
+                request.setAttribute("listaEnemigos", listaEnemigos);
+
+
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("enemigo.jsp");
                 requestDispatcher.forward(request, response);
-                break;*/
+                break;
 
 
         }

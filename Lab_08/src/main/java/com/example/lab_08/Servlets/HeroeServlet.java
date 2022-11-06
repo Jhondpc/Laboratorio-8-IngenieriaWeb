@@ -48,19 +48,22 @@ public class HeroeServlet extends HttpServlet {
                 view.forward(request,response);
                 break;
             case "editar":
-                idHeroe = Integer.parseInt(request.getParameter("id_heroe"));
-                heroe = hDao.buscarporIdHeroe(idHeroe);
 
-                if (heroe != null){
-                    request.setAttribute("heroe", heroe);
-                    view = request.getRequestDispatcher("editarHeroe.jsp");
-                    view.forward(request,response);
-                } else {
-                    //id no encontrado
+                String HeroeId = request.getParameter("id");
+                Heroes heroeEdit = hDao.buscarporIdHeroe(HeroeId);
+
+                if (heroeEdit != null) { //abro el form para editar
+                    request.setAttribute("heroeEdit", heroeEdit);
+                    requestDispatcher = request.getRequestDispatcher("formEditarHeroe.jsp");
+                    requestDispatcher.forward(request, response);
+                } else { //id no encontrado
                     response.sendRedirect(request.getContextPath() + "/HeroeServlet");
-
                 }
                 break;
+
+
+
+
 
             case "crear":
                 view = request.getRequestDispatcher("agregar_heroe.jsp");
@@ -157,6 +160,17 @@ public class HeroeServlet extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/JobServlet?action=editar&id=" + id_heroe);
                 }
 
+                break;
+
+            case "buscar":
+                String searchText = request.getParameter("searchText");
+
+                ArrayList<Heroes> listaHeroes = hDao.buscarporNombreHeroe(searchText);
+                request.setAttribute("listaHeroes", listaHeroes);
+
+
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("heroes.jsp");
+                requestDispatcher.forward(request, response);
                 break;
 
         }
