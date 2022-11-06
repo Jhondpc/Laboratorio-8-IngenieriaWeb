@@ -10,14 +10,24 @@ public class Heroes {
     private int ataque;
     private float ptosExperiencia; //puede salir decimal
 
-    private String Pareja;
+    private String pareja;
 
-    public String getPareja() {
-        return Pareja;
+    private int idPareja;
+
+    public int getIdPareja() {
+        return idPareja;
     }
 
-    public void setPareja(String idPareja) {
-        this.Pareja = idPareja;
+    public void setIdPareja(int idPareja) {
+        this.idPareja = idPareja;
+    }
+
+    public String getPareja() {
+        return pareja;
+    }
+
+    public void setPareja(String pareja) {
+        this.pareja = pareja;
     }
 
 

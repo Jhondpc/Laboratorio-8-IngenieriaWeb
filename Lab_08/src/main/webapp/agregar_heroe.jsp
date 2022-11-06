@@ -88,7 +88,7 @@
                                     <div>
                                         <div class="col-md-10 col-sm-10 col-lg-10">
                                             <h1>CREAR HÉROE</h1>
-                                            <form method="post" action="<%=request.getContextPath()%>/HeroeServlet?action=crear">
+                                            <form method="post" action="<%=request.getContextPath()%>/HeroeServlet?action=guardar">
                                                 <div class="mb-3">
                                                     <label for="Nombre" class="arial">Nombre</label>
                                                     <input type="text" class="form-control rounded" id="Nombre" placeholder="Nombre" name="Nombre">

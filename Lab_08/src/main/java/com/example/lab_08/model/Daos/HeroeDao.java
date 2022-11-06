@@ -2,6 +2,7 @@ package com.example.lab_08.model.Daos;
 
 import com.example.lab_08.model.Beans.Heroes;
 import com.example.lab_08.model.Beans.Heroes;
+import com.example.lab_08.model.Beans.InventarioObjetos;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,10 +11,9 @@ public class HeroeDao extends DaoBase{
 
     public ArrayList<Heroes> listarHeroes(){
         ArrayList<Heroes> listaHeroes = new ArrayList<>();
-        String sqlHeroe = "SELECT h.idheroes, h.nombre,  h.edad, h.genero, c.nombre, h.nivel_inicial, h.ataque, p.nombre, h.pts_x_experiencia\n" +
-                "                FROM heroes h \n" +
-                "                left join heroes p on (h.id_pareja = p.idheroes) \n" +
-                "                inner join clase c on (h.clase_idClase = c.idClase )";
+        String sqlHeroe = "SELECT h.idheroes, h.nombre,  h.edad, h.genero, c.nombre, h.nivel_inicial, h.ataque, p.idheroes, h.pts_x_experiencia FROM heroes h \n" +
+                "left join heroes p on (h.id_pareja = p.idheroes) \n" +
+                "inner join clase c on (h.clase_idClase = c.idClase)";
         try (Connection connection = this.getConnection();
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery(sqlHeroe)) {
@@ -28,7 +28,7 @@ public class HeroeDao extends DaoBase{
                 heroe.setClase(rs.getString(5));
                 heroe.setNivelInicial(rs.getInt(6));
                 heroe.setAtaque(rs.getInt(7));
-                heroe.setPareja(rs.getString(8));
+                heroe.setIdPareja(rs.getInt(8));
                 heroe.setPtosExperiencia(rs.getInt(9));
                 listaHeroes.add(heroe);
             }
@@ -36,25 +36,25 @@ public class HeroeDao extends DaoBase{
             throwables.printStackTrace();
         }
         return listaHeroes;
+
     }
 
 
     public void crearHeroe(Heroes heroe){
 
 
-        String sql = "insert into heroes (nombre,edad,genero,clase,nivel_inicial,ataque) values (?,?,?,?,?,?)";
+        String sql = "INSERT INTO `mydb`.`heroes` (`nombre`, `edad`, `genero`, `nivel_inicial`, `ataque`, `id_pareja`, `pts_x_experiencia`, `clase_idClase`) VALUES (?, ?, ?, ?,?, ?, ?, ?);";
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            //pstmt.setInt(1,heroe.getIdHeroes());
             pstmt.setString(1,heroe.getNombre());
             pstmt.setInt(2,heroe.getEdad());
             pstmt.setString(3,heroe.getGenero());
-            pstmt.setString(4, heroe.getClase());
-            pstmt.setInt(5,heroe.getNivelInicial());
-            pstmt.setInt(6,heroe.getAtaque());
-            //pstmt.setInt(7,heroe.getIdPareja());
-            //pstmt.setInt(8,heroe.getPtosExperiencia());
+            pstmt.setInt(4,heroe.getNivelInicial());
+            pstmt.setInt(5,heroe.getAtaque());
+            pstmt.setInt(6,heroe.getIdPareja());
+            pstmt.setFloat(7,heroe.getPtosExperiencia());
+            pstmt.setString(8, heroe.getClase());
 
             pstmt.executeUpdate();
 
@@ -170,6 +170,38 @@ public class HeroeDao extends DaoBase{
 
 
         return listaHeroes;
+
+    }
+
+    public ArrayList<InventarioObjetos> listarInvObjetos(){
+        ArrayList<InventarioObjetos> listaObj = new ArrayList<>();
+        String sql = "SELECT  he.nombre, inv.nombre, hi.cantidad_objetos\n" +
+                "FROM heroes_has_inventarioobjetos hi, heroes he, inventarioobjetos inv\n" +
+                "where inv.idInventarioObjetos = hi.inventarioobjetos_idInventarioObjetos\n" +
+                " and he.idheroes = hi.heroes_idheroes and he.nombre = 'Jorge'\n";
+        try (Connection connection = this.getConnection();
+             Statement stm = connection.createStatement();
+             ResultSet rs = stm.executeQuery(sql)) {
+
+
+            while(rs.next()){
+                InventarioObjetos objetos = new InventarioObjetos();
+
+                //heroe.setIdHeroes(rs.getInt(1));
+                //heroe.setNombre(rs.getString(2));
+                //heroe.setEdad(rs.getInt(3));
+                //eroe.setGenero(rs.getString(4));
+                //heroe.setClase(rs.getString(5));
+                //heroe.setNivelInicial(rs.getInt(6));
+               // heroe.setAtaque(rs.getInt(7));
+                //heroe.setIdPareja(rs.getInt(8));
+                //heroe.setPtosExperiencia(rs.getInt(9));
+                listaObj.add(objetos);
+            }
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return listaObj;
 
     }
 

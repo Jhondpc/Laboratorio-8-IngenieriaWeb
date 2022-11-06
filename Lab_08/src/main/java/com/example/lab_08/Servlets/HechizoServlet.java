@@ -24,7 +24,7 @@ public class HechizoServlet extends HttpServlet {
         switch (accion){
 
             case "inicio": //crear
-                view = request.getRequestDispatcher("heroes.jsp");
+                view = request.getRequestDispatcher("hechizos.jsp");
                 view.forward(request,response);
                 break;
 

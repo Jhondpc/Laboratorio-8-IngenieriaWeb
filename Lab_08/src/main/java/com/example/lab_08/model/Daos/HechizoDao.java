@@ -121,7 +121,7 @@ public class HechizoDao extends DaoBase {
 
 
     //metodo para actualizar(update en el CRUD)
-    public void editarHechizo(String jobId, String nombre, int potencia, int precision, int hechizo_base) {
+    public void editarHechizo(String idHechizo, String nombre, int potencia, int precision, int hechizo_base) {
 
         String url = "jdbc:mysql://localhost:3306/hr";
         String sql = "UPDATE hechizos_magicos SET nombre = ?, potencia = ?, precision = ?, nivel_aprendizaje=?, hechizo_base=? WHERE idHechizosMagicos = ?";
@@ -130,7 +130,7 @@ public class HechizoDao extends DaoBase {
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
             //en el orden en que se llama con respecto a la sentencia sql
-            pstmt.setString(4, jobId); //ultimo
+            pstmt.setString(4, idHechizo); //ultimo
             pstmt.setString(1, nombre); //primero
             pstmt.setInt(2, potencia); //segundo
             pstmt.setInt(3, precision); //tercero

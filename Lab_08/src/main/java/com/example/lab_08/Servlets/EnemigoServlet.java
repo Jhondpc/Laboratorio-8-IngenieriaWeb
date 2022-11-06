@@ -30,6 +30,7 @@ public class EnemigoServlet extends HttpServlet {
         switch (accion){
 
             case "inicio": //crear
+                request.setAttribute("listaEnemigos", eDao.listarEnemigos());
                 view = request.getRequestDispatcher("enemigo.jsp");
                 view.forward(request,response);
                 break;

@@ -23,7 +23,7 @@ public class HeroeServlet extends HttpServlet {
         String accion = request.getParameter("accion")==null?"inicio":request.getParameter("accion");
         RequestDispatcher view;
         HeroeDao hDao = new HeroeDao();
-        ArrayList<Heroes> listaHeroes;
+        //ArrayList<Heroes> listaHeroes;
         Heroes heroe;
         int idHeroe;
         switch (accion){
@@ -34,13 +34,13 @@ public class HeroeServlet extends HttpServlet {
                 view = request.getRequestDispatcher("heroes.jsp");
                 view.forward(request,response);
                 break;
-            /*case "listar":
+            case "listar":
 
                 //istaHeroes =
                 request.setAttribute("listaHeroes", hDao.listarHeroes());
                 view = request.getRequestDispatcher("heroes.jsp");
                 view.forward(request,response);
-                break;*/
+                break;
             case "editar":
                 idHeroe = Integer.parseInt(request.getParameter("id_heroe"));
                 heroe = hDao.buscarporIdHeroe(idHeroe);
@@ -80,15 +80,15 @@ public class HeroeServlet extends HttpServlet {
         HeroeDao hDao = new HeroeDao();
         switch (action) {
 
-            case "crear":
+            case "guardar":
 
                 String nombre=request.getParameter("Nombre");
                 int edad= Integer.parseInt(request.getParameter("Edad"));
                 String genero=request.getParameter("Genero");
                 String clase = request.getParameter("Clase");
-                int nivelInicial= Integer.parseInt(request.getParameter("Nivel_Inicia"));
+                int nivelInicial= Integer.parseInt(request.getParameter("Nivel_Inicial"));
                 int ataque = Integer.parseInt(request.getParameter("Ataque"));
-                //int idPareja= Integer.parseInt(request.getParameter("IDPareja"));
+                int idPareja= Integer.parseInt(request.getParameter("IDPareja"));
 
 
                 Heroes heroe = new Heroes();
@@ -96,23 +96,24 @@ public class HeroeServlet extends HttpServlet {
                 heroe.setEdad(edad);
                 heroe.setGenero(genero);
                 heroe.setClase(clase);
-
                 heroe.setNivelInicial(nivelInicial);
                 heroe.setAtaque(ataque);
-                //para el calculo de experiencia
-                /*float experiencia;
-                if (heroe.getNivelInicial()>0 && heroe.getNivelInicial()>15){
+                heroe.setIdPareja(idPareja);
+
+
+                float experiencia;
+                if (heroe.getNivelInicial()>0 && heroe.getNivelInicial()<=15){
 
                     experiencia= (float) ((Math.pow(heroe.getNivelInicial(),3)*(24+(heroe.getNivelInicial() + 1 ))/3 ) /50);
                     heroe.setPtosExperiencia(experiencia);
 
-                } else if (heroe.getNivelInicial()>16 && heroe.getNivelInicial()>35) {
+                } else if (heroe.getNivelInicial()>=16 && heroe.getNivelInicial()<=35) {
                     experiencia= (float) ( (Math.pow(heroe.getNivelInicial(),3)*(heroe.getNivelInicial() + 14) ) /50);
                     heroe.setPtosExperiencia(experiencia);
-                } else if (heroe.getNivelInicial()>36 && heroe.getNivelInicial()>100) {
+                } else if (heroe.getNivelInicial()>=36 && heroe.getNivelInicial()<=100) {
                     experiencia= (float) ( (Math.pow(heroe.getNivelInicial(),3)*( 32 +(heroe.getNivelInicial()/2) ) ) /50);
                     heroe.setPtosExperiencia(experiencia);
-                }*/
+                }
                 hDao.crearHeroe(heroe);
 
                 response.sendRedirect(request.getContextPath() + "/HeroeServlet");
