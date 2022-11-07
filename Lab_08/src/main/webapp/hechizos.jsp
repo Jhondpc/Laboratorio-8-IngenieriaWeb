@@ -87,7 +87,7 @@
                 <section class="slider_section">
                     <div class="banner_main">
                         <div class="row">
-                            <div class="container col-xl-7 col-xs-12 ">
+                            <div class="container col-xxl-7 col-xs-12 ">
                                 <div class="container-fluid">
                                     <div class="container">
                                         <div class="row" >
@@ -155,7 +155,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-xl-5 col-xs-8">
+                            <div class="col-xxl-5 col-xs-8">
                                 <div class="text-img">
                                     <figure><img src="images/maga.png" /></figure>
                                 </div>

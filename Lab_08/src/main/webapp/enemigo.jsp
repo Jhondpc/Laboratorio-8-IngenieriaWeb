@@ -90,7 +90,7 @@
                 <section class="slider_section">
                     <div class="banner_main">
                         <div class="row">
-                            <div class="container col-xl-8 col-xs-12 ">
+                            <div class="container col-xxl-8 col-xs-12 ">
 
                                     <div class="container-fluid">
 
@@ -205,7 +205,7 @@
 
 
                             </div>
-                            <div class="col-xl-4 col-xs-4 ">
+                            <div class="col-xxl-4 col-xs-4 ">
                                 <div class="text-img">
                                     <figure><img src="images/enemig.png" /></figure>
                                 </div>
