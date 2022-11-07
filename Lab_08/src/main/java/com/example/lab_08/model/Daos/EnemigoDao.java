@@ -11,11 +11,10 @@ public class EnemigoDao extends DaoBase{
     public ArrayList<Enemigos> listarEnemigos(){
 
         ArrayList<Enemigos> listaEnemigos = new ArrayList<>();
-        String sql1 = "SELECT e.idEnemigos, e.nombres, c.nombre, e.ataque, e.experiencia_x_derrota , o.nombre, eo.probabilidad_dejar_objeto " +
-                "FROM enemigos e, clase c , enemigos_has_objeto_dejado_x_derrota eo, objeto_dejado_x_derrota o " +
-                "Where e.clase_idClase1 = c.idClase " +
-                "and   e.idEnemigos=eo.enemigos_idEnemigos " +
-                "and   eo.objeto_dejado_x_derrota_idobjeto_dejado_x_derrota =o.idobjeto_dejado_x_derrota";
+        String sql1 = "select e.idEnemigos, e.nombres, c.nombre, e.ataque, e.experiencia_x_derrota , o.nombre, eo.probabilidad_dejar_objeto\n" +
+                "from enemigos e left join clase c on (e.clase_idClase1 = c.idClase)\n" +
+                "left join enemigos_has_objeto_dejado_x_derrota eo on (e.idEnemigos=eo.enemigos_idEnemigos)\n" +
+                "left join objeto_dejado_x_derrota o on (eo.objeto_dejado_x_derrota_idobjeto_dejado_x_derrota =o.idobjeto_dejado_x_derrota)";
         try (Connection connection = this.getConnection();
              Statement stm = connection.createStatement();
              ResultSet rs = stm.executeQuery(sql1) ) {
@@ -46,20 +45,24 @@ public class EnemigoDao extends DaoBase{
 
     public void crearEnemigo(Enemigos enemigo){
 
-
-        String sql = "insert into enemigos (nombre,clase,experiencia_x_derrota,ataque) values (?,?,?,?,?)";
+        String sql = "INSERT INTO `mydb`.`enemigos` (`nombres`, `genero`, `experiencia_x_derrota`, `ataque`, `clase_idClase1`) VALUES (?, ?, ?, ?,?);" +
+                "INSERT INTO `mydb`.`enemigos_has_objeto_dejado_x_derrota` (`probabilidad_dejar_objeto`) VALUES (?);" +
+                "INSERT INTO `mydb`.`objeto_dejado_x_derrota` (`nombre`) VALUES (?);";
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setInt(1,enemigo.getIdEnemigos());
-            pstmt.setString(2,enemigo.getNombre());
-            pstmt.setString(4,enemigo.getGenero());
-            pstmt.setInt(5,enemigo.getExperienciaPorDerrota());
-            pstmt.setInt(6,enemigo.getAtaque());
-            //pstmt.setInt(7,heroe.getIdPareja());
+            pstmt.setString(1,enemigo.getNombre());
+            pstmt.setString(2,enemigo.getGenero());
+            pstmt.setInt(3,enemigo.getExperienciaPorDerrota());
+            pstmt.setInt(4,enemigo.getAtaque());
+            pstmt.setInt(5,enemigo.getIdClase());
+            pstmt.setFloat(6,enemigo.getProbaDejarObjetos());
+            pstmt.setString(7,enemigo.getObejtoDejado());
+
+
+            //pstmt.setInt(6,enemigo.getIdEnemigos());
+            //pstmt.setInt(5,enemigo.getIdClase());
             //pstmt.setInt(8,heroe.getPtosExperiencia());
-
-
 
             pstmt.executeUpdate();
 

@@ -64,7 +64,7 @@
                                                 <li> <a href="<%=request.getContextPath()%>/index?action=heroes">Héroes</a> </li>
                                                 <li> <a href="<%=request.getContextPath()%>/index?action=enemigos">Enemigos</a> </li>
                                                 <li> <a href="<%=request.getContextPath()%>/index?action=hechizos">Hechizos</a> </li>
-                                                <li> <a href="<%=request.getContextPath()%>/index?action=catalogo">Catálogo de Objetos</a> </li>
+                                                <li> <a href="<%=request.getContextPath()%>/index?action=catalogo">Catálogo de Obejtos</a> </li>
 
                                             </ul>
                                         </nav>

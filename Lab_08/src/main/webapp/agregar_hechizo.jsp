@@ -88,34 +88,31 @@
                                     <div>
                                         <div class="col-md-10 col-sm-10 col-lg-10">
                                             <h1>CREAR HECHIZO</h1>
-                                            <form>
+                                            <form method="post" action="<%=request.getContextPath()%>/HechizoServlet?accion=guardar">
                                                 <div class="mb-3">
-                                                    <label for="jobId" class="arial">Nombre</label>
-                                                    <input type="text" class="form-control rounded" id="jobId" placeholder="Nombre" name="Nombre">
+                                                    <label for="Nombre" class="arial">Nombre</label>
+                                                    <input type="text" class="form-control rounded" id="Nombre" placeholder="Nombre" name="Nombre">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="jobTitle" class="form-label">Elemento</label>
-                                                    <input type="text" class="form-control rounded" id="jobTitle" placeholder="Elemento" name="Elemento">
+                                                    <label for="Elemento" class="form-label">Elemento</label>
+                                                    <input type="text" class="form-control rounded" id="Elemento" placeholder="Elemento" name="Elemento">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="minSalary" class="form-label">Potencia</label>
-                                                    <input type="text" class="form-control rounded" id="minSalary" placeholder="Potencia" name="Potencia">
+                                                    <label for="Potencia" class="form-label">Potencia</label>
+                                                    <input type="text" class="form-control rounded" id="Potencia" placeholder="Potencia" name="Potencia">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="maxSalary" class="form-label">Precisión</label>
-                                                    <input type="text" class="form-control rounded" id="maxSalary" placeholder="Precisión" name="Precisión">
+                                                    <label for="Precisión" class="form-label">Precisión</label>
+                                                    <input type="text" class="form-control rounded" id="Precisión" placeholder="Precisión" name="Precisión">
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="HechizoBase" class="form-label">HechizoBase</label>
+                                                    <input type="text" class="form-control rounded" id="HechizoBase" placeholder="Hechizo Base" name="Hechizo_Base">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="maxSalary" class="form-label">Nivel Inicial</label>
-                                                    <input type="text" class="form-control rounded" id="maxSalary" placeholder="Nivel Inicial" name="Nivel_Inicia">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="maxSalary" class="form-label">Hechizo Base</label>
-                                                    <input type="text" class="form-control rounded" id="maxSalary" placeholder="Hechizo Base" name="Hechizo_Base">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="maxSalary" class="form-label">Nivel de Aprendizaje</label>
-                                                    <input type="text" class="form-control rounded" id="maxSalary" placeholder="Nivel de Aprendizaje" name="NiveldeAprendizaje">
+                                                    <label for="Niveldeaprendizaje" class="form-label">Nivel de Aprendizaje</label>
+                                                    <input type="text" class="form-control rounded" id="Niveldeaprendizaje" placeholder="Nivel de Aprendizaje" name="NiveldeAprendizaje">
                                                 </div>
 
                                                 <button type="submit" class="btn btn-primary">Guardar</button>

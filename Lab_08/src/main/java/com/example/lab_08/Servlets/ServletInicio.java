@@ -29,7 +29,6 @@ public class ServletInicio extends HttpServlet {
                 requestDispatcher.forward(request, response);
                 break;
             case "heroes":
-
                 request.setAttribute("listaHeroes", hDao.listarHeroes());
                 requestDispatcher = request.getRequestDispatcher("heroes.jsp");
                 requestDispatcher.forward(request, response);

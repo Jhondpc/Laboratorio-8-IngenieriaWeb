@@ -45,7 +45,7 @@ public class HeroeDao extends DaoBase{
 
     public void crearHeroe(Heroes heroe){
 
-
+        System.out.println(heroe.getIdClase());
         String sql = "INSERT INTO `mydb`.`heroes` (`nombre`, `edad`, `genero`, `nivel_inicial`, `ataque`, `id_pareja`, `pts_x_experiencia`, `clase_idClase`) VALUES (?, ?, ?, ?,?, ?, ?, ?);";
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -69,21 +69,21 @@ public class HeroeDao extends DaoBase{
     }
 
 
-    public void editarHeroe(String nombreUpdate, int edadUpdate, String generoUpdate, int nivelUpdate, int id_parejaUpdate, int ataqueUpdate){
+    public void editarHeroe(int id,String nombreUpdate, int edadUpdate, String generoUpdate, int nivelUpdate, int id_parejaUpdate, int ataqueUpdate,float experienciaUpdate, int idClase1){
 
-        String sql = "update heroes set nombre=?,edad=?,genero=?,nivel_inicial=?,ataque=?,id_pareja=? where id_heroe=?";
+        String sql = "update heroes set nombre=?,edad=?,genero=?,nivel_inicial=?,ataque=?,id_pareja=?,pts_x_experiencia=?,clase_idClase=? where idheroes=?";
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            //pstmt.setInt(1,heroe.getIdHeroes());
+            pstmt.setInt(9,id);
             pstmt.setString(1,nombreUpdate);
             pstmt.setInt(2,edadUpdate);
             pstmt.setString(3,generoUpdate);
             pstmt.setInt(4,nivelUpdate);
-            pstmt.setInt(5,id_parejaUpdate);
-            //pstmt.setInt(7,heroe.getIdPareja());
-
-
+            pstmt.setInt(5,ataqueUpdate);
+            pstmt.setInt(6,id_parejaUpdate);
+            pstmt.setFloat(7,experienciaUpdate);
+            pstmt.setInt(8,idClase1);
             pstmt.executeUpdate();
 
 
@@ -95,7 +95,7 @@ public class HeroeDao extends DaoBase{
     }
 
     public void borrarheroe(int idHeroe){
-        String sql = "DELETE FROM heroes WHERE idHeroe = ?"; //sentencia de sql para eliminar un registro a partir del id que ingresa el usuario
+        String sql = "DELETE FROM heroes WHERE idheroes = ?"; //sentencia de sql para eliminar un registro a partir del id que ingresa el usuario
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -110,15 +110,16 @@ public class HeroeDao extends DaoBase{
     }
 
 
-    public Heroes buscarporIdHeroe(String idHeroe){
+    public Heroes buscarporIdHeroe(int idHeroe){
 
+        String idHeroeStr = String.valueOf(idHeroe);
         Heroes heroeEdit = null;
 
         String sql = "select * from heroes WHERE idheroes = ?";
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setString(1, idHeroe);
+            pstmt.setString(1, idHeroeStr);
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
@@ -127,13 +128,11 @@ public class HeroeDao extends DaoBase{
                     heroeEdit.setNombre(rs.getString(2));
                     heroeEdit.setEdad(rs.getInt(3));
                     heroeEdit.setGenero(rs.getString(4));
-                    heroeEdit.setClase(rs.getString(5));
-                    heroeEdit.setNivelInicial(rs.getInt(6));
-                    heroeEdit.setAtaque(rs.getInt(7));
-                    heroeEdit.setIdPareja(rs.getInt(8));
-                    heroeEdit.setPtosExperiencia(rs.getInt(9));
-
-
+                    heroeEdit.setNivelInicial(rs.getInt(5));
+                    heroeEdit.setAtaque(rs.getInt(6));
+                    heroeEdit.setIdPareja(rs.getInt(7));
+                    heroeEdit.setPtosExperiencia(rs.getInt(8));
+                    heroeEdit.setIdClase(rs.getInt(9));
                 }
             }
         } catch (SQLException e) {

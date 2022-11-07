@@ -105,16 +105,16 @@
                                                     <input type="text" class="form-control rounded" id="Ataque" placeholder="Ataque" name="Ataque">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="ExperienciaporDerrota" class="form-label">Experiencia por Derrota</label>
-                                                    <input type="text" class="form-control rounded" id="ExperienciaporDerrota" placeholder="Experiencia por Derrota" name="ExperienciaporDerrota">
+                                                    <label for="ExperienciaPorDerrota" class="form-label">Experiencia por Derrota</label>
+                                                    <input type="text" class="form-control rounded" id="ExperienciaPorDerrota" placeholder="Experiencia por Derrota" name="ExperienciaPorDerrota">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="Obejtodejado" class="form-label">Obejto dejado</label>
-                                                    <input type="text" class="form-control rounded" id="Obejtodejado" placeholder="Obejto dejado" name="Obejtodejado">
+                                                    <label for="ObjetoDejado" class="form-label">Obejto dejado</label>
+                                                    <input type="text" class="form-control rounded" id="ObjetoDejado" placeholder="Objeto dejado" name="ObjetoDejado">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="ProbabildiaddedejarObjetos" class="form-label">Probabildiad de dejar Objetos</label>
-                                                    <input type="text" class="form-control rounded" id="ProbabildiaddedejarObjetos" placeholder="Probabildiad de dejar Objetos" name="ProbabildiaddedejarObjetos">
+                                                    <label for="ProbabilidaDeDejarObjetos" class="form-label">Probabildiad de dejar Objetos</label>
+                                                    <input type="text" class="form-control rounded" id="ProbabilidaDeDejarObjetos" placeholder="Probabildiad de dejar Objetos" name="ProbabilidaDeDejarObjetos">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="Genero" class="form-label">Genero</label>

@@ -110,7 +110,27 @@ public class ObjetoDao extends DaoBase{
         }
     }
 
+    public void crearObjeto(InventarioObjetos objeto){
 
+
+        String sql = "INSERT INTO `mydb`.`inventarioobjetos` (`nombre`, `uso`, `peso`) VALUES (?, ?, ?)";
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+
+            pstmt.setString(1,objeto.getNombre());
+            pstmt.setString(2,objeto.getUso());
+            pstmt.setInt(3,objeto.getPeso());
+
+
+            pstmt.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
 
 }

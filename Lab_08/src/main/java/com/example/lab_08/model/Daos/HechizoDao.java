@@ -44,18 +44,52 @@ public class HechizoDao extends DaoBase {
     public void crearHechizo(Hechizos hechizo){
 
 
-        String sql = "insert into hechizos_magicos (nombre,potencia,precision,nivel_aprendizaje,id_pareja) values (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO `mydb`.`hechizo_magicos` (`nombre`, `potencia`, `precision`, `nivel_aprendizaje`, `elementos_idelementos`, `hechizo_base`) VALUES (?,?,?, ?, ?,?);";
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setInt(1,hechizo.getIdHechizos());
-            pstmt.setString(2,hechizo.getNombre());
-            pstmt.setInt(3,hechizo.getPotencia());
-            pstmt.setInt(4,hechizo.getPrecision());
-            pstmt.setInt(5,hechizo.getNivelAprendizaje());
-            //pstmt.setInt(6,hechizo.getAtaque());
-            //pstmt.setInt(7,heroe.getIdPareja());
-            //pstmt.setInt(8,heroe.getPtosExperiencia());
+            int idelemento=0;
+            switch (hechizo.getElemento().toLowerCase()){
+                case "Fuego":
+                    idelemento = 1;
+                     break;
+                case "Tierra":
+                    idelemento = 2;
+                    break;
+                case "Agua":
+                    idelemento = 3;
+                    break;
+                case "Viento":
+                    idelemento = 4;
+                    break;
+
+            }
+            int idhechizobase=0;
+            switch (hechizo.getHechizoBase()){
+                case "1":
+                    idhechizobase = 1;
+                    break;
+                case "2":
+                    idhechizobase = 2;
+                    break;
+                case "4":
+                    idhechizobase = 3;
+                    break;
+                case "5":
+                    idhechizobase = 4;
+                    break;
+
+            }
+
+
+
+            pstmt.setString(1,hechizo.getNombre());
+
+            pstmt.setInt(5,idelemento);
+            pstmt.setInt(2,hechizo.getPotencia());
+            pstmt.setInt(3,hechizo.getPrecision());
+            pstmt.setInt(4,hechizo.getNivelAprendizaje());
+            pstmt.setInt(6,idhechizobase);
 
             pstmt.executeUpdate();
 

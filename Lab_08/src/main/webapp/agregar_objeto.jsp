@@ -88,24 +88,22 @@
                                     <div>
                                         <div class="col-md-10 col-sm-10 col-lg-10">
                                             <h1>CREAR OBJETO</h1>
-                                            <form>
+                                            <form method="post" action="<%=request.getContextPath()%>/ObjetoServlet?accion=guardar">
                                                 <div class="mb-3">
-                                                    <label for="jobId" class="arial">Nombre</label>
-                                                    <input type="text" class="form-control rounded" id="jobId" placeholder="Nombre" name="Nombre">
+                                                    <label for="Nombre" class="arial">Nombre</label>
+                                                    <input type="text" class="form-control rounded" id="Nombre" placeholder="Nombre" name="Nombre">
                                                 </div>
 
                                                 <div class="mb-3">
-                                                    <label for="minSalary" class="form-label">Peso</label>
-                                                    <input type="text" class="form-control rounded" id="minSalary" placeholder="Peso" name="Peso">
+                                                    <label for="Uso" class="form-label">Uso</label>
+                                                    <input type="text" class="form-control rounded" id="Uso" placeholder="Uso" name="Uso">
                                                 </div>
+
                                                 <div class="mb-3">
-                                                    <label for="maxSalary" class="form-label">Clase</label>
-                                                    <input type="text" class="form-control rounded" id="maxSalary" placeholder="Clase" name="Clase">
+                                                    <label for="Peso" class="form-label">Peso</label>
+                                                    <input type="text" class="form-control rounded" id="Peso" placeholder="Peso" name="Peso">
                                                 </div>
-                                                <div class="mb-3">
-                                                    <label for="maxSalary" class="form-label">Usado por un héroe</label>
-                                                    <input type="text" class="form-control rounded" id="maxSalary" placeholder="Usado por un héroe" name="Usadoporunhéroe">
-                                                </div>
+
 
                                                 <button type="submit" class="btn btn-primary">Guardar</button>
                                                 <a class="btn btn-danger" href="<%=request.getContextPath()%>/ObjetoServlet">Regresar</a>

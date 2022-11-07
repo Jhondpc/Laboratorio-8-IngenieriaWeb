@@ -49,7 +49,7 @@ public class HeroeServlet extends HttpServlet {
                 break;
             case "editar":
 
-                String HeroeId = request.getParameter("id");
+                int HeroeId = Integer.parseInt(request.getParameter("id"));
                 Heroes heroeEdit = hDao.buscarporIdHeroe(HeroeId);
 
                 if (heroeEdit != null) { //abro el form para editar
@@ -60,18 +60,13 @@ public class HeroeServlet extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/HeroeServlet");
                 }
                 break;
-
-
-
-
-
             case "crear":
                 view = request.getRequestDispatcher("agregar_heroe.jsp");
                 view.forward(request,response);
                 break;
 
             case "borrar":  // JobServlet?action=borrar&id=50
-                idHeroe = Integer.parseInt(request.getParameter("id_heroe"));
+                idHeroe = Integer.parseInt(request.getParameter("id"));
                 hDao.borrarheroe(idHeroe);
 
                 response.sendRedirect(request.getContextPath() + "/HeroeServlet");
@@ -85,9 +80,9 @@ public class HeroeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String action = request.getParameter("action");
+        String accion = request.getParameter("accion");
         HeroeDao hDao = new HeroeDao();
-        switch (action) {
+        switch (accion) {
 
             case "guardar":
 
@@ -100,15 +95,15 @@ public class HeroeServlet extends HttpServlet {
                 int ataque = Integer.parseInt(request.getParameter("Ataque"));
                 int idPareja = Integer.parseInt(request.getParameter("IDPareja"));
 
-                switch (clase){
-                    case "Dragon": idClase = 1; break;
-                    case "Fantasma": idClase = 2; break;
-                    case "Demonio": idClase = 3; break;
-                    case "Pez": idClase = 4; break;
-                    case "Humano": idClase = 5; break;
-                    case "Bestia": idClase = 6; break;
-                    case "Ave": idClase = 7; break;
-                    case "Otros": idClase = 8; break;
+                switch (clase.toLowerCase()){
+                    case "dragon": idClase = 1; break;
+                    case "fantasma": idClase = 2; break;
+                    case "demonio": idClase = 3; break;
+                    case "pez": idClase = 4; break;
+                    case "humano": idClase = 5; break;
+                    case "bestia": idClase = 6; break;
+                    case "ave": idClase = 7; break;
+                    case "otros": idClase = 8; break;
                 }
                 
                 Heroes heroe = new Heroes();
@@ -141,15 +136,38 @@ public class HeroeServlet extends HttpServlet {
 
             case "actualizar":
 
-                int id_heroe = Integer.parseInt(request.getParameter("idHeroe"));
+                int id_heroe = Integer.parseInt(request.getParameter("IdHeroe"));
+                String nombre1=request.getParameter("Nombre");
+                int edad1= Integer.parseInt(request.getParameter("Edad"));
+                String genero1=request.getParameter("Genero");
+                int nivelInicial1= Integer.parseInt(request.getParameter("NivelInicial"));
+                int ataque1 = Integer.parseInt(request.getParameter("Ataque"));
+                int idPareja1 = Integer.parseInt(request.getParameter("IdPareja"));
+                String clase1 = request.getParameter("Clase");
+                int idClase1 = 0;
+                switch (clase1.toLowerCase()){
+                    case "dragon": idClase1 = 1; break;
+                    case "fantasma": idClase1 = 2; break;
+                    case "demonio": idClase1 = 3; break;
+                    case "pez": idClase1 = 4; break;
+                    case "humano": idClase1 = 5; break;
+                    case "bestia": idClase1 = 6; break;
+                    case "ave": idClase1 = 7; break;
+                    case "otros": idClase1 = 8; break;
+                }
+                float experiencia1 = 0;
+                if (nivelInicial1>0 && nivelInicial1<=15){
 
-                String nombre1=request.getParameter("nombre");
-                int edad1= Integer.parseInt(request.getParameter("edad"));
-                String genero1=request.getParameter("genero");
-                int nivelInicial1= Integer.parseInt(request.getParameter("nivel"));
-                int ataque1 = Integer.parseInt(request.getParameter("ataque"));
-                int idPareja1= Integer.parseInt(request.getParameter("idPareja"));
+                    experiencia1 = (float) ((Math.pow(nivelInicial1,3)*(24+(nivelInicial1 + 1 ))/3 ) /50);
 
+                } else if (nivelInicial1>=16 && nivelInicial1<=35) {
+                    experiencia1= (float) ( (Math.pow(nivelInicial1,3)*(nivelInicial1 + 14) ) /50);
+                } else if (nivelInicial1>=36 && nivelInicial1<=100) {
+                    experiencia1= (float) ( (Math.pow(nivelInicial1,3)*( 32 +(nivelInicial1/2) ) ) /50);
+                }
+                hDao.editarHeroe(id_heroe,nombre1,edad1 ,genero1 , nivelInicial1, idPareja1, ataque1,experiencia1,idClase1);
+                response.sendRedirect(request.getContextPath() + "/HeroeServlet");
+                /*
                 try {
                     //int minSalary1 = Integer.parseInt(minSalaryStr1);
                     //int maxSalary1 = Integer.parseInt(maxSalaryStr1);
@@ -159,7 +177,7 @@ public class HeroeServlet extends HttpServlet {
                 } catch (NumberFormatException e) {
                     response.sendRedirect(request.getContextPath() + "/JobServlet?action=editar&id=" + id_heroe);
                 }
-
+                */
                 break;
 
             case "buscar":

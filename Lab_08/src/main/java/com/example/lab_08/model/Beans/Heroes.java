@@ -2,7 +2,7 @@ package com.example.lab_08.model.Beans;
 
 public class Heroes {
 
-    private Integer idHeroes;
+    private int idHeroes;
     private String nombre;
     private int edad;
     private String genero;
@@ -12,8 +12,9 @@ public class Heroes {
     private String clase;
     private int idClase;
     private String pareja;
-
     private int idPareja;
+    public int idSoltero = 0;
+
 
     public int getIdPareja() {
         return idPareja;
@@ -42,11 +43,11 @@ public class Heroes {
     int cantidadObjetos; //duda: falta getter y setter
 
 
-    public Integer getIdHeroes() {
+    public int getIdHeroes() {
         return idHeroes;
     }
 
-    public void setIdHeroes(Integer idHeroes) {
+    public void setIdHeroes(int idHeroes) {
         this.idHeroes = idHeroes;
     }
 

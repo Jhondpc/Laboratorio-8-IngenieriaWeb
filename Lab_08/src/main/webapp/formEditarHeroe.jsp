@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 321
-  Date: 6/11/2022
-  Time: 17:35
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.example.lab_08.model.Beans.Heroes" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="heroeEdit" type="com.example.lab_08.model.Beans.Heroes" scope="request"/>
 <!DOCTYPE html>
@@ -96,11 +90,12 @@
                             <div>
                                 <div class="col-md-10 col-sm-10 col-lg-10">
                                     <h1>EDITAR HÉROE</h1>
-                                    <form method="post" action="<%=request.getContextPath()%>/HeroeServlet?action=actualizar">
+                                    <form method="post" action="<%=request.getContextPath()%>/HeroeServlet?accion=actualizar">
+                                        <input type="hidden" name="IdHeroe" value="<%=heroeEdit.getIdHeroes()%>">
                                         <div class="mb-3">
                                             <label for="Nombre" class="arial">Nombre</label>
                                             <input type="text" class="form-control rounded" id="Nombre" placeholder="Nombre" name="Nombre"
-                                            value="<%=heroeEdit.getNombre()%>" >
+                                            value="<%=heroeEdit.getNombre()%>">
                                         </div>
                                         <div class="mb-3">
                                             <label for="Edad" class="form-label">Edad</label>
@@ -113,11 +108,6 @@
                                                    value="<%=heroeEdit.getGenero()%>">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="Clase" class="form-label">Clase</label>
-                                            <input type="text" class="form-control rounded" id="Clase" placeholder="Clase" name="Clase"
-                                                   value="<%=heroeEdit.getClase()%>">
-                                        </div>
-                                        <div class="mb-3">
                                             <label for="NivelInicial" class="form-label">Nivel Inicial</label>
                                             <input type="text" class="form-control rounded" id="NivelInicial" placeholder="Nivel Inicial" name="NivelInicial"
                                                    value="<%=heroeEdit.getNivelInicial()%>">
@@ -128,11 +118,27 @@
                                                    value="<%=heroeEdit.getAtaque()%>">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="IDPareja" class="form-label">Pareja</label>
-                                            <input type="text" class="form-control rounded" id="IDPareja" placeholder="ID Pareja" name="IDPareja"
+                                            <label for="IdPareja" class="form-label">Pareja</label>
+                                            <input type="text" class="form-control rounded" id="IdPareja" placeholder="ID Pareja" name="IdPareja"
                                                    value="<%=heroeEdit.getIdPareja()%>">
                                         </div>
-
+                                        <% String idClaseStr = null;
+                                            switch (heroeEdit.getIdClase()){
+                                                case 1: idClaseStr = "Dragon"; break;
+                                                case 2: idClaseStr = "Fantasma"; break;
+                                                case 3: idClaseStr = "Demonio"; break;
+                                                case 4: idClaseStr = "Pez"; break;
+                                                case 5: idClaseStr = "Humano"; break;
+                                                case 6: idClaseStr = "Bestia"; break;
+                                                case 7: idClaseStr = "Ave"; break;
+                                                case 8: idClaseStr = "Otros"; break;
+                                            }
+                                        %>
+                                        <div class="mb-3">
+                                            <label for="Clase" class="form-label">Clase</label>
+                                            <input type="text" class="form-control rounded" id="Clase" placeholder="Clase" name="Clase"
+                                                   value="<%=idClaseStr%>">
+                                        </div>
                                         <button type="submit" class="btn btn-primary">Actualizar</button>
                                         <a class="btn btn-danger" href="<%=request.getContextPath()%>/HeroeServlet">Regresar</a>
                                     </form>

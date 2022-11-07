@@ -81,36 +81,45 @@ public class EnemigoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
+        String accion = request.getParameter("action");
         EnemigoDao eDao = new EnemigoDao();
 
-        switch (action) {
+        switch (accion) {
             case "guardar":
 
-                String NombreEne = request.getParameter("Nombre");
-                String Clase = request.getParameter("Clase");
-                String Ataquestr = request.getParameter("Ataque");
-                int Ataque = Integer.parseInt(Ataquestr);
-                String expstr = request.getParameter("ExperienciaporDerrota");
-                int ExperienciaporDerrota = Integer.parseInt(expstr);
-                String objetoDejado = request.getParameter("Obejtodejado");
-                String probadejarobjetoStr = request.getParameter("ProbabildiaddedejarObjetos");
-                float probDejarObjeto = Float.parseFloat(probadejarobjetoStr);
+                String nombre = request.getParameter("Nombre");
+                int idClase = Integer.parseInt(request.getParameter("Clase")); //en la tabla va idclase
+                int ataque = Integer.parseInt(request.getParameter("Ataque"));
+                int experienciaPorDerrota = Integer.parseInt(request.getParameter("ExperienciaPorDerrota"));
+                String objetoDejado = request.getParameter("ObjetoDejado");
+                String probaDejarDbjetoStr = request.getParameter("ProbabilidaDeDejarObjetos");
+                float probDejarObjeto = Float.parseFloat(probaDejarDbjetoStr);
+                String genero = request.getParameter("Genero");
+
+                /*
+                switch (clase){
+                    case "Dragon": idClase = 1; break;
+                    case "Fantasma": idClase = 2; break;
+                    case "Demonio": idClase = 3; break;
+                    case "Pez": idClase = 4; break;
+                    case "Humano": idClase = 5; break;
+                    case "Bestia": idClase = 6; break;
+                    case "Ave": idClase = 7; break;
+                    case "Otros": idClase = 8; break;
+                }
+                */
 
                 Enemigos enemigo = new Enemigos();
-
-
-                enemigo.setNombre(NombreEne);
-                enemigo.setClase(Clase);
-                enemigo.setAtaque(Ataque);
-                enemigo.setExperienciaPorDerrota(ExperienciaporDerrota);
+                enemigo.setNombre(nombre);
+                enemigo.setIdClase(idClase);
+                enemigo.setAtaque(ataque);
+                enemigo.setExperienciaPorDerrota(experienciaPorDerrota);
                 enemigo.setObejtoDejado(objetoDejado);
                 enemigo.setProbaDejarObjetos(probDejarObjeto);
-
-
-
+                enemigo.setGenero(genero);
                 eDao.crearEnemigo(enemigo);
 
+                response.sendRedirect(request.getContextPath() + "/EnemigoServlet");
 
                 break;
 
@@ -124,8 +133,6 @@ public class EnemigoServlet extends HttpServlet {
 
                 ArrayList<Enemigos> listaEnemigos = eDao.buscarEnemigos(searchText);
                 request.setAttribute("listaEnemigos", listaEnemigos);
-
-
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("enemigo.jsp");
                 requestDispatcher.forward(request, response);
                 break;

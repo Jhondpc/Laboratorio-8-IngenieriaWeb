@@ -9,9 +9,8 @@ public class Enemigos {
     private int experienciaPorDerrota;
     private int ataque;
     private String clase;
-
+    private int idClase;
     private String obejtoDejado;
-
     private float probaDejarObjetos;
 
     public float getProbaDejarObjetos() {
@@ -38,11 +37,13 @@ public class Enemigos {
         this.clase = clase;
     }
 
+    public int getIdClase() {return idClase;}
+
+    public void setIdClase(int idClase) {this.idClase = idClase;}
+
     int idObjetoDejaDerrota; //duda: falta getter y setter
 
-
-
-    public Integer getIdEnemigos() {
+    public int getIdEnemigos() {
         return idEnemigos;
     }
 
