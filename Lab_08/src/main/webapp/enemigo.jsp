@@ -114,7 +114,7 @@
                                             <br>
 
                                             <form method="post" class="d-flex input-group w-auto"
-                                                  action="<%=request.getContextPath()%>/EnemigoServlet?accion=buscar">
+                                                  action="<%=request.getContextPath()%>/EnemigoServlet?action=buscar">
                                                 <input
                                                         type="text"
                                                         name="searchText"

@@ -1,5 +1,7 @@
 package com.example.lab_08.model.Daos;
 
+import com.example.lab_08.model.Beans.EnemigoDejaObjeto;
+import com.example.lab_08.model.Beans.EnemigoProbDejarObjeto;
 import com.example.lab_08.model.Beans.Enemigos;
 import com.example.lab_08.model.Beans.Heroes;
 
@@ -45,9 +47,7 @@ public class EnemigoDao extends DaoBase{
 
     public void crearEnemigo(Enemigos enemigo){
 
-        String sql = "INSERT INTO `mydb`.`enemigos` (`nombres`, `genero`, `experiencia_x_derrota`, `ataque`, `clase_idClase1`) VALUES (?, ?, ?, ?,?);" +
-                "INSERT INTO `mydb`.`enemigos_has_objeto_dejado_x_derrota` (`probabilidad_dejar_objeto`) VALUES (?);" +
-                "INSERT INTO `mydb`.`objeto_dejado_x_derrota` (`nombre`) VALUES (?);";
+        String sql = "INSERT INTO `mydb`.`enemigos` (`nombres`, `genero`, `experiencia_x_derrota`, `ataque`, `clase_idClase1`) VALUES (?, ?, ?, ?,?);";
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
@@ -56,8 +56,8 @@ public class EnemigoDao extends DaoBase{
             pstmt.setInt(3,enemigo.getExperienciaPorDerrota());
             pstmt.setInt(4,enemigo.getAtaque());
             pstmt.setInt(5,enemigo.getIdClase());
-            pstmt.setFloat(6,enemigo.getProbaDejarObjetos());
-            pstmt.setString(7,enemigo.getObejtoDejado());
+            //pstmt.setFloat(6,enemigo.getProbaDejarObjetos());
+            //pstmt.setString(7,enemigo.getObejtoDejado());
 
 
             //pstmt.setInt(6,enemigo.getIdEnemigos());
@@ -73,6 +73,106 @@ public class EnemigoDao extends DaoBase{
 
     }
 
+    public int buscarIdEnemigoCreado(){
+
+        int idCreado = 0;
+        String sql1 = "select max(idEnemigos) from mydb.enemigos";
+        try (Connection connection = this.getConnection();
+             Statement stm = connection.createStatement();
+             ResultSet rs = stm.executeQuery(sql1) ) {
+
+
+            while(rs.next()){
+                idCreado = (rs.getInt(1));
+            }
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return idCreado;
+    }
+
+    public void crearObjeto(EnemigoDejaObjeto objeto){
+
+        String sql = "INSERT INTO `mydb`.`objeto_dejado_x_derrota` (`nombre`) VALUES (?);";
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setString(1,objeto.getNombreObjetoDejado());
+
+            pstmt.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public int buscarIdObjetoCreado(){
+
+        int idCreado = 0;
+        String sql1 = "select max(idobjeto_dejado_x_derrota) from mydb.objeto_dejado_x_derrota;";
+        try (Connection connection = this.getConnection();
+             Statement stm = connection.createStatement();
+             ResultSet rs = stm.executeQuery(sql1) ) {
+
+
+            while(rs.next()){
+                idCreado = (rs.getInt(1));
+            }
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return idCreado;
+    }
+
+    public Enemigos buscarporIdEnemigo(int idEnemigo){
+
+        String idEnemigoStr = String.valueOf(idEnemigo);
+        Enemigos enemigoEdit = null;
+
+        String sql = "select * from enemigos WHERE idEnemigos = ?";
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setString(1, idEnemigoStr);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    enemigoEdit = new Enemigos();
+                    enemigoEdit.setIdEnemigos(rs.getInt(1));
+                    enemigoEdit.setNombre(rs.getString(2));
+                    enemigoEdit.setGenero(rs.getString(3));
+                    enemigoEdit.setExperienciaPorDerrota(rs.getInt(4));
+                    enemigoEdit.setAtaque(rs.getInt(5));
+                    enemigoEdit.setIdClase(rs.getInt(6));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return enemigoEdit;
+
+    }
+
+    public void crearProbDejarObjeto(EnemigoProbDejarObjeto enemigoProbDejarObjeto){
+
+        String sql = "INSERT INTO `mydb`.`enemigos_has_objeto_dejado_x_derrota` (`enemigos_idEnemigos`, `objeto_dejado_x_derrota_idobjeto_dejado_x_derrota`, `probabilidad_dejar_objeto`) VALUES (?,?,?);";
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setInt(1,enemigoProbDejarObjeto.getIdEnemigo());
+            pstmt.setInt(2,enemigoProbDejarObjeto.getIdObjetoDejato());
+            pstmt.setFloat(3,enemigoProbDejarObjeto.getProbDejarObj());
+
+            pstmt.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
     public void editarEnemigo(String nombreUpdate, String generoUpdate, int nivelUpdate, int ataqueUpdate){
 
@@ -117,11 +217,10 @@ public class EnemigoDao extends DaoBase{
 
     public ArrayList<Enemigos> buscarEnemigos(String nombreEnemigo){
         ArrayList<Enemigos> listaEnemigos = new ArrayList<>();
-        String sql1 = "SELECT e.idEnemigos, e.nombres, c.nombre, e.ataque, e.experiencia_x_derrota , o.nombre, eo.probabilidad_dejar_objeto " +
-                "FROM enemigos e, clase c , enemigos_has_objeto_dejado_x_derrota eo, objeto_dejado_x_derrota o " +
-                "Where lower(e.nombres) like ? and e.clase_idClase1 = c.idClase " +
-                "and   e.idEnemigos=eo.enemigos_idEnemigos " +
-                "and   eo.objeto_dejado_x_derrota_idobjeto_dejado_x_derrota =o.idobjeto_dejado_x_derrota ";
+        String sql1 = "SELECT e.idEnemigos, e.nombres, c.nombre, e.ataque, e.experiencia_x_derrota , o.nombre, eo.probabilidad_dejar_objeto\n" +
+                "from enemigos e left join clase c on (lower(e.nombres) like ? and e.clase_idClase1 = c.idClase) \n" +
+                "left join enemigos_has_objeto_dejado_x_derrota eo on (e.idEnemigos=eo.enemigos_idEnemigos) \n" +
+                "left join objeto_dejado_x_derrota o on (eo.objeto_dejado_x_derrota_idobjeto_dejado_x_derrota =o.idobjeto_dejado_x_derrota);";
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql1)) {
 

@@ -90,7 +90,7 @@
                                     <div>
                                         <div class="col-md-10 col-sm-10 col-lg-10">
                                             <h1>CREAR ENEMIGO</h1>
-                                            <form method="post" action="<%=request.getContextPath()%>/EnemigoServlet?action=guardar">
+                                            <form method="post" action="<%=request.getContextPath()%>/EnemigoServlet?action=guardar&proba=si">
 
                                                 <div class="mb-3">
                                                     <label for="Nombre" class="arial">Nombre</label>
