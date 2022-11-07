@@ -83,6 +83,7 @@
                         <div class="container">
 
                             <div class="row">
+
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 ">
                                     <div class="text-bg">
                                         <h1>Bienvenido a  <br> <strong class="b_bold">la última fantasía </strong></h1>
@@ -100,10 +101,12 @@
                                         <figure><img src="images/papu.png" /></figure>
                                     </div>
                                 </div>
+
+
                             </div>
                         </div>
                     </div>
-            </div>
+
             </section>
             </div>
             </div>

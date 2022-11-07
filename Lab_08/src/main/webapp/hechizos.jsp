@@ -86,100 +86,85 @@
                 <!-- end header -->
                 <section class="slider_section">
                     <div class="banner_main">
+                        <div class="row">
+                            <div class="container col-xl-7 col-xs-12 ">
+                                <div class="container-fluid">
+                                    <div class="container">
+                                        <div class="row" >
+                                            <div class="col-3">
 
-                        <div class="container">
-
-                            <div class="row">
-                                <div class="col-7  ">
-
-
-                                    <section class="section profile" style="padding-top: 30px">
-                                        <div class="container">
-                                            <div class="container-fluid">
-                                                <div class="row" >
-                                                    <div class="col-3">
-
-                                                        <a class="btn btn-danger" href="<%=request.getContextPath()%>/HechizoServlet?accion=agregarHechizo"
-                                                           role="button">Añadir nuevo Hechizo</a>
-
-                                                    </div>
-
-                                                </div>
-                                                <br>
-                                                <div></div>
-
-
-
-                                                <table class="table table-striped table-hover">
-                                                    <thead>
-                                                        <tr style="align-content: center">
-                                                            <th>ID</th>
-                                                            <th>Nombre</th>
-                                                            <th>Elemento</th>
-                                                            <th>Potencia</th>
-                                                            <th>Precisión</th>
-                                                            <th>Hechizo Base</th>
-                                                            <th>Nivel de Aprendizaje</th>
-                                                            <th></th>
-
-
-                                                        </tr>
-                                                    </thead>
-
-                                                    <tbody>
-                                                        <%
-                                                            for (Hechizos hechizos : listaHechizos) { %>
-                                                        <tr>
-                                                            <td><%=hechizos.getIdHechizos()%>
-                                                            </td>
-                                                            <td><%=hechizos.getNombre()%>
-                                                            </td>
-                                                            <td><%=hechizos.getElemento()%>
-                                                            </td>
-                                                            <td><%=hechizos.getPotencia()%>
-                                                            </td>
-                                                            <td><%=hechizos.getPrecision()%>
-                                                            </td>
-                                                            <td><%=hechizos.getHechizoBase()%>
-                                                            </td>
-                                                            <td><%=hechizos.getNivelAprendizaje()%>
-                                                            </td>
-                                                            <td>
-                                                                <a
-                                                                        onclick="return confirm('¿Estas seguro(a) que deseas borrar?')"
-                                                                        class="btn btn-danger" href="<%=request.getContextPath()%>/HechizoServlet?accion=borrar&id=<%=hechizos.getIdHechizos()%>"
-                                                                        role="button">Eliminar
-                                                                </a>
-
-                                                            </td>
-
-
-                                                        </tr>
-                                                        <%
-                                                            }
-
-                                                        %>
-                                                    </tbody>
-
-                                                </table>
+                                                <a class="btn btn-danger" href="<%=request.getContextPath()%>/HechizoServlet?accion=agregarHechizo"
+                                                   role="button">Añadir nuevo Hechizo</a>
                                             </div>
+
                                         </div>
-
-
-                                    </section>
-
-
-                                </div>
-                                <div class="col-5 ">  //esta imagen no deja presionar el boton eliminar
-                                    <div class="text-img">
-                                        <figure><img src="images/maga.png" /></figure>
                                     </div>
+                                    <br>
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                        <tr style="align-content: center">
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                            <th>Elemento</th>
+                                            <th>Potencia</th>
+                                            <th>Precisión</th>
+                                            <th>Hechizo Base</th>
+                                            <th>Nivel de Aprendizaje</th>
+                                            <th></th>
+
+
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <%
+                                            for (Hechizos hechizos : listaHechizos) { %>
+                                        <tr>
+                                            <td><%=hechizos.getIdHechizos()%>
+                                            </td>
+                                            <td><%=hechizos.getNombre()%>
+                                            </td>
+                                            <td><%=hechizos.getElemento()%>
+                                            </td>
+                                            <td><%=hechizos.getPotencia()%>
+                                            </td>
+                                            <td><%=hechizos.getPrecision()%>
+                                            </td>
+                                            <td><%=hechizos.getHechizoBase()%>
+                                            </td>
+                                            <td><%=hechizos.getNivelAprendizaje()%>
+                                            </td>
+                                            <td>
+                                                <a
+                                                        onclick="return confirm('¿Estas seguro(a) que deseas borrar?')"
+                                                        class="btn btn-danger" href="<%=request.getContextPath()%>/HechizoServlet?accion=borrar&id=<%=hechizos.getIdHechizos()%>"
+                                                        role="button">Eliminar
+                                                </a>
+
+                                            </td>
+
+
+                                        </tr>
+                                        <%
+                                            }
+
+                                        %>
+                                        </tbody>
+
+                                    </table>
+
                                 </div>
                             </div>
+                            <div class="col-xl-5 col-xs-8">
+                                <div class="text-img">
+                                    <figure><img src="images/maga.png" /></figure>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </section>
-
 
             </div>
 
