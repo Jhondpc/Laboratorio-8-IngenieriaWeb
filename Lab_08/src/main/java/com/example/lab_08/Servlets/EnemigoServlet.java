@@ -43,20 +43,20 @@ public class EnemigoServlet extends HttpServlet {
                 view = request.getRequestDispatcher("debilidades_fortalezas.jsp");
                 view.forward(request,response);
                 break;
-            /*
+
             case "editar":
-                idEnemigo = Integer.parseInt(request.getParameter("id_heroe"));
+                idEnemigo = Integer.parseInt(request.getParameter("idEnemigo"));
                 enemigo = eDao.buscarporIdEnemigo(idEnemigo);
 
                 if (enemigo != null){
                     request.setAttribute("enemigo", enemigo);
-                    view = request.getRequestDispatcher("editarEnemigo.jsp");
+                    view = request.getRequestDispatcher("formEditarEnemigo.jsp");
                     view.forward(request,response);
                 } else {
                     //id no encontrado
                     response.sendRedirect(request.getContextPath() + "/EnemigoServlet");
                 }
-                break;*/
+                break;
 
             case "crear":
 
@@ -117,7 +117,26 @@ public class EnemigoServlet extends HttpServlet {
                 break;
                 
             case "actualizar":
+                int id_enemigo = Integer.parseInt(request.getParameter("IdEnemigo"));
+                String nombre1=request.getParameter("Nombre");
 
+                int ataque1 = Integer.parseInt(request.getParameter("Ataque"));
+                int experienciaPorDerrota1 = Integer.parseInt(request.getParameter("ExperienciaPorDerrota"));
+                String clase1 = request.getParameter("Clase");
+                String genero1 = request.getParameter("genero");
+                int idClase1 = 0;
+                switch (clase1.toLowerCase()){
+                    case "dragon": idClase1 = 1; break;
+                    case "fantasma": idClase1 = 2; break;
+                    case "demonio": idClase1 = 3; break;
+                    case "pez": idClase1 = 4; break;
+                    case "humano": idClase1 = 5; break;
+                    case "bestia": idClase1 = 6; break;
+                    case "ave": idClase1 = 7; break;
+                    case "otros": idClase1 = 8; break;
+                }
+                eDao.editarEnemigo(nombre1,genero1,experienciaPorDerrota1,ataque1);
+                response.sendRedirect(request.getContextPath() + "/EnemigoServlet");
 
                 break;
 
