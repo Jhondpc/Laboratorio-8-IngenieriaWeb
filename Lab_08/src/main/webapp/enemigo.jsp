@@ -60,7 +60,7 @@
                                 <div class="full">
                                     <div class="center-desk">
                                         <div class="logo">
-                                            <a href="index.html"><img style ="width: 80px" ; src="images/icono.png" alt="#" /></a>
+                                            <a href="index.jsp"><img style ="width: 80px" ; src="images/icono.png" alt="#" /></a>
                                         </div>
                                     </div>
                                 </div>
@@ -113,18 +113,7 @@
                                             </div>
                                             <br>
 
-                                            <form method="post" class="d-flex input-group w-auto"
-                                                  action="<%=request.getContextPath()%>/EnemigoServlet?action=buscar">
-                                                <input
-                                                        type="text"
-                                                        name="searchText"
-                                                        class="form-control rounded"
-                                                        placeholder="Buscar Enemigo"
-                                                        aria-label="Search"
-                                                        aria-describedby="search-addon"
-                                                />
 
-                                            </form>
 
                                         </div>
 
