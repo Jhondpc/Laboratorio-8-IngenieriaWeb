@@ -1,4 +1,4 @@
-<%@ page import="com.example.lab_08.model.Beans.Heroes" %>
+%@ page import="com.example.lab_08.model.Beans.Heroes" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -183,7 +183,7 @@
 
                                                 <a
 
-                                                        class="btn btn-danger" href="<%=request.getContextPath()%>//index?action=inventario&nombreHeroe=<%=heroes.getNombre()%>"
+                                                        class="btn btn-danger" href="<%=request.getContextPath()%>/HeroeServlet?accion=inventario&nombreHeroe=<%=heroes.getNombre()%>"
                                                         role="button">Ver Inventario
 
                                                 </a>
