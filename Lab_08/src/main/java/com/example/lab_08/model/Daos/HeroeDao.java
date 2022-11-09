@@ -181,13 +181,12 @@ public class HeroeDao extends DaoBase{
 
     }
 
-    public ArrayList<InventarioHeroe> listarInvObjetos(String nomHeroe){
+   public ArrayList<InventarioHeroe> listarInvObjetos(String nomHeroe){
         ArrayList<InventarioHeroe> listaObj = new ArrayList<>();
 
-        String sql = "SELECT  he.nombre, inv.nombre, inv.uso, inv.peso, hi.cantidad_objetos " +
-                "                FROM heroes_has_inventarioobjetos hi, heroes he, inventarioobjetos inv " +
-                "                where inv.idInventarioObjetos = hi.inventarioobjetos_idInventarioObjetos " +
-                "               and he.idheroes = hi.heroes_idheroes and he.nombre = ? ";
+        String sql = "SELECT  he.nombre, inv.nombre, inv.uso, inv.peso, hi.cantidad_objetos FROM heroes_has_inventarioobjetos hi, heroes he, inventarioobjetos inv \n" +
+                " where inv.idInventarioObjetos = hi.inventarioobjetos_idInventarioObjetos \n" +
+                " and he.idheroes = hi.heroes_idheroes and he.nombre = ?";
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
