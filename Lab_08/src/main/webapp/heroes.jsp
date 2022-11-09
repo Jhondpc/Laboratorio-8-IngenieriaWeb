@@ -209,7 +209,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xxl-4 col-xs-4">
+                            <div class="col-xl-4 col-xs-4">
                                 <div class="text-img">
                                     <figure><img src="images/papu.png" /></figure>
                                 </div>

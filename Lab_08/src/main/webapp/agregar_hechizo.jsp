@@ -116,7 +116,7 @@
                                                 </div>
 
                                                 <button type="submit" class="btn btn-primary">Guardar</button>
-                                                <a class="btn btn-danger" href="<%=request.getContextPath()%>/HechizoServlet">Regresar</a>
+                                                <a class="btn btn-danger" href="<%=request.getContextPath()%>/index?action=hechizos">Regresar</a>
                                             </form>
                                         </div>
                                     </div>

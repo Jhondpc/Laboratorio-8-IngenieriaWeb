@@ -96,7 +96,7 @@
                                                 <div class="row" "container" >
                                                 <div class="col-4">
 
-                                                    <a class="btn btn-danger" href="<%=request.getContextPath()%>+/EnemigoServlet?accion=clase"
+                                                    <a class="btn btn-danger" href="<%=request.getContextPath()%>/EnemigoServlet?accion=clase"
                                                        role="button">Volver</a>
 
                                                 </div>

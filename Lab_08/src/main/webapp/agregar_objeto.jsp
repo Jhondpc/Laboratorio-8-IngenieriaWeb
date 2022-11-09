@@ -106,7 +106,7 @@
 
 
                                                 <button type="submit" class="btn btn-primary">Guardar</button>
-                                                <a class="btn btn-danger" href="<%=request.getContextPath()%>/ObjetoServlet">Regresar</a>
+                                                <a class="btn btn-danger" href="<%=request.getContextPath()%>/index?action=catalogo">Regresar</a>
                                             </form>
                                         </div>
                                     </div>
